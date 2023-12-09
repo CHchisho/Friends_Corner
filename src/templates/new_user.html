@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>
+	<link href="{{ url_for('static', path='/new_user.css') }}" rel="stylesheet">
+    <title>Kaverikulma</title>
+	<script>
+    function submitForm() {
+		const username_value = document.getElementById('username').value;
+		const email_value = document.getElementById('email').value;
+		const password_value = document.getElementById('password').value;
+
+		console.log(username_value)
+		try {
+
+			const response = axios.post(`/auth/register`, {
+				email: email_value,
+				password: password_value,
+				is_active: 1,
+				is_superuser: 1,
+				is_verified: 1,
+				username: username_value,
+				role_id: 1,
+			});
+			console.log("Success!")
+			document.getElementById("demo1").innerHTML = `Получено: ${response.data}`;
+		} catch (error) {
+			console.error('Error:', error);
+		}
+		}
+	</script>
+</head>
+<body>
+    <div>
+        <p id="demo1"> Ничегоо </p>
+    </div>
+<!--	<form action="#" onsubmit="submitForm();" id="myForm">-->
+		<div class="parent">
+			<div class="child">
+				<label>Your name</label>
+				<input type="text" id="username" value="Name" placeholder="Имя" pattern="[A-Za-zÅÄÖåäö\s\-']+" required>
+			</div>
+		<br><br>
+			<div class="child">
+				<label style="padding-left:10px;">Your age</label>
+				<input type="number" id="age" name="age" value="18" min="10" max="99" required>
+			</div>
+		<br><br><br>
+
+		 <br><br>
+			<div class="child">
+				<label>Who are you?</label>
+				<label>Boy
+					<input type="radio" name="you" id="you" value="boy" checked/><span></span>
+				</label>
+				<label>Girl
+					<input type="radio" name="you" value="girl"/><span></span>
+				</label>
+				<label>Other
+				  <input type="radio" name="you" value="other" /><span></span>
+				</label>
+			</div>
+		<br>
+			<div class="child">
+				<label>Who are you looking for?</label>
+				<label>Friend
+				<input type="radio" name="find" id="find" value="boy" checked/><span></span>
+					</label>
+					<label>Girlfriend
+				<input type="radio" name="find" value="girl"/><span></span>
+					</label>
+					<label>Other
+				<input type="radio" name="find" value="other"/><span></span>
+					</label>
+			</div>
+
+			<div class="child">
+				<br>
+				<label>Your email:</label>
+				<input type="text" id="email" value="email@gmail.com" placeholder="email@gmail.com"
+					   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+			</div>
+			<div class="child">
+				<br>
+				<label>Your password:</label>
+				<input type="text" id="password" value="password_str" placeholder="your password" required>
+			</div>
+		</div>
+
+		<br><br>
+		<div class="send-button">
+			<input type="submit" value="Send" style="cursor: pointer; background: #FFB439;" onclick="submitForm()">
+		</div>
+
+<!--	</form>-->
+	<div class="centered-image">
+		<img src="{{ url_for('static', path='images/freinds300.png') }}" alt="Freidns">
+<!--		<img src="images/freinds300.png" align="middle" >-->
+	</div>
+
+
+<!--<div class="flex justify-center flex-col items-center">-->
+<!--    <div class="flex my-3 gap-5">-->
+<!--        <input id="operation_search" type="text" placeholder="Тип операции" class="text-xl">-->
+<!--        <button onclick="searchForOperation()" class="border-2 rounded-3xl bg-gray-300 p-3">Поиск по операциям</button>-->
+<!--        <input id="numberInput" type="text" placeholder="numberInput" class="text-xl">-->
+<!--        <button onclick="getid()" class="border-2 rounded-2xl bg-gray-300">Поиск по операциям</button>-->
+
+
+<!--        <button onclick="test_log()" class="border-2 rounded-3xl bg-gray-300 p-3">test log</button>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <p id="demo1"> Ничегоо </p>-->
+<!--    </div>-->
+<!--</div>-->
+</body>
+</html>

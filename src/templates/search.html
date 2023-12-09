@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="flex justify-center flex-col items-center">
+    <div class="flex my-3 gap-5">
+        <input id="operation_search" type="text" placeholder="Тип операции" class="text-xl">
+        <button onclick="searchForOperation()" class="border-2 rounded-3xl bg-gray-300 p-3">Поиск по операциям</button>
+        <input id="numberInput" type="text" placeholder="numberInput" class="text-xl">
+        <button onclick="getid()" class="border-2 rounded-2xl bg-gray-300">Поиск по операциям</button>
+
+
+        <button onclick="test_log()" class="border-2 rounded-3xl bg-gray-300 p-3">test log</button>
+    </div>
+    <div>
+        <p id="demo1"> Ничегоо </p>
+    </div>
+<!--    <span>Например, Выплата купонов, Удержание НДФЛ по купонам, Вывод денежных средств, Продажа ценных бумаг</span>-->
+<!--    {% for operation in operations %}-->
+<!--        <div class="flex rounded-3 border-2 p-3 mt-5">-->
+<!--            <img width="150" src="{{ url_for('static', path='stocks_1.png') }}" alt="Стонкс" class="mr-5">-->
+<!--            <div class="flex flex-col">-->
+<!--                <span class="text-2xl font-bold">{{ operation.type }}</span>-->
+<!--                <span class="text-lg">{{ operation.date }}</span>-->
+<!--                <span class="text-lg">{{ operation.quantity }}</span>-->
+<!--                <span class="text-lg">{{ operation.figi }}</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    {% endfor %}-->
+</div>
+{% endblock %}

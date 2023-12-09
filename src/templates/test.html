@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>test</title>
+	<script src="js/test.js"></script>
+	<link rel="stylesheet" href="test.css">
+</head>
+<body>
+
+	<form action="http://127.0.0.1:8000/submit" method="post" >
+		<div class="parent">
+			<div class="child">
+				<label>Your name</label>
+				<input type="text" name="firstname" value="Name" placeholder="Имя" pattern="[A-Za-zÅÄÖåäö\s\-']+" required>
+			</div>
+		<br><br>
+			<div class="child">
+				<label style="padding-left:10px;">Your age</label>
+				<input type="number" id="age" name="age" value="18" min="10" max="99" required>
+			</div>
+		<br><br><br>
+
+		 <br><br>
+			<div class="child">
+				<label>Who are you?</label>
+				<label>Boy
+					<input type="radio" name="you" id="you" value="boy" checked/><span></span>
+				</label>
+				<label>Girl
+					<input type="radio" name="you" value="girl"/><span></span>
+				</label>
+				<label>Other
+				  <input type="radio" name="you" value="other" /><span></span>
+				</label>
+			</div>
+		<br>
+			<div class="child">
+				<label>Who are you looking for?</label>
+				<label>Friend
+				<input type="radio" name="find" id="find" value="boy" checked/><span></span>
+					</label>
+					<label>Girlfriend
+				<input type="radio" name="find" value="girl"/><span></span>
+					</label>
+					<label>Other
+				<input type="radio" name="find" value="other"/><span></span>
+					</label>
+			</div>
+
+			<div class="child">
+				<br>
+				<label>Your email:</label>
+				<input type="text" id="email" name="email" value="email@gmail.com" placeholder="email@gmail.com"
+					   pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" required>
+			</div>
+		</div>
+
+		<br><br>
+		<div class="send-button">
+			<input type="submit" value="Send" style="cursor: pointer; background: #FFB439;">
+		</div>
+
+	</form>
+	<div class="centered-image">
+		<img src="images/freinds300.png" align="middle" >
+	</div>
+
+</body>
+</html>
