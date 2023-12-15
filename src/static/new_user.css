@@ -1,98 +1,221 @@
 @charset "utf-8";
 /* CSS Document */
-body{background-color: #fedea5;} 
-.centered-image {
-	margin-top: 1%;
-    margin-left: 35vw;
-	margin-bottom: 0;
-	text-align: center;
+body {
+	background-color: #f7ffff;
+    font: 400 normal 14px/18px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+	display: grid;
+    place-content: center;
 }
-.centered-image img {
-	max-width: 100%;
-	max-height: 100%;
+.parent_0 {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	background-color: white;
+	border-radius: 7px;
+	width: 120%;
+/*			margin-right: 5%;*/
+	margin-left: -10%;
+	margin-bottom: 70%;
+	-webkit-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
+	box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
+	padding: 2% 10%;
 }
-.parent { 
-  display: flex;
-  flex-wrap:wrap;            
-	margin: 0 0 0 25%;
-	padding: 0;
-	align-items: center;
-	justify-content: center;
-/*	text-align: center;*/
-  width: 50%;
-  height: 100%;
-  color: #FB631E;
-  font-size: 24px;
+.parent_1 {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	width: 90%;
+	margin-right: 5%;
 }
-.child {
-	margin: 0% 4%;
-/*  width: 50%;*/
-/*  height: 40%;*/
+.parent_2 {
+display: flex;
+flex-direction: row;
+text-align: left;
+justify-content: space-between;
+}
+.label_1 {
+	font-size: 30px;
+	font-weight: bold;
+	font-style: normal;
+	margin: 6% 0 2% 0;
+}		
+.label_2 {
+		font-size: 15px;
+		font-style: normal;
+		font-weight: bold;
+		margin: 2% 0 1% 0;
 }
 
-.send-button{
-	text-align: center;
-	
+#par > div {
+	width: 120%; 
+	margin: 5px 10% 0 0;
 }
 
-/*label {width:30%;}*/
-input {
-/*  width:100%;*/
-	
-  resize: vertical;
-  padding:15px;
-  border-radius:15px;
-  border:0;
-  box-shadow:4px 4px 10px rgba(0,0,0,0.16);
-  font-family: 'Comic Sans MS';
-  font-size: 21px;
+select{
+	cursor: pointer;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    z-index: 1;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    margin: 0 !important;
+    height: auto !important;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(0,0,0,0.91);
+    padding: 10px 29px 10px 15px !important;
+    border-radius: 4px;
+    line-height: 20px;
+    background-color: transparent !important;
+    border: 1px solid !important;
+    border-color: rgba(17,17,17,0.2) !important;
 }
 
+input[type="text"],
+input[type="number"]  {
+    flex: 1;
+    z-index: 1;
+    appearance: none;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    margin: 0 !important;
+    height: auto !important;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    color: rgba(28,28,28,1.00);
+    padding: 10px 10px 10px 15px !important;
+    border-radius: 4px;
+    line-height: 20px;
+    background-color: transparent !important;
+    border: 3px solid !important;
+    border-color: rgba(17,17,17,0.2) !important;
+}
+
+input[type="text"][pattern]:invalid {    
+		border-color: rgba(254,0,0,0.97) !important;
+}
+
+
+
+
+p {
+  text-align: left;
+  padding: 0 20px;
+}
+
+fieldset {
+  margin-bottom: 40px;
+  border-radius: 10px;
+  padding: 30px;
+}
 
 label {
-  display:block;
-  margin-bottom:4px;
-  position: relative; 
-  padding-left:30px;  
-  font-family: 'Comic Sans MS';
-  font-size: 21px;
-/*  cursor: pointer;*/
-}
-label input[type=radio] {
-  position: absolute; 
-  opactiy: 0;
-  width:0; 
-  height:0;
-}
-label span {
-  position: absolute;
-  top:0;
-  left:0;
-  width:20px; 
-  height:20px;
-  background-color: #dddddd;
-  border-radius: 50%;
-  transition: .9s background-color;
-}
-label span:after {
-  content: "";
-  position: absolute;
-  display: none;
-  top:50%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  background-color:#fff;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-}
-label:hover span {
-  background-color: #ccc;
+  position: relative;
 }
 
-label input:checked ~ span {
-  background-color: #2eaadc;
+input[type="radio"],
+input[type="checkbox"] {
+  appearance: none;
+  background: #fff;
+  border: 2px solid #415674;
+  height: 1.5em;
+  width: 1.5em;
+  margin: 0 10px 0 5px;
+  border-radius: 100%;
+  vertical-align: text-bottom;
+  position: relative;
 }
-label input:checked ~ span:after {
-  display:block;
+input[type="checkbox"] {
+  border-radius: 0;
+}
+input[type="radio"]::before,
+input[type="checkbox"]::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  top: 0;
+}
+input[type="radio"]:checked::before {
+  border: 5px solid transparent;
+  border-radius: 100%;
+  background: #4b83fc;
+}
+input[type="checkbox"]:checked::before {
+    border-right: 5px solid #4b83fc;
+    border-bottom: 5px solid #4b83fc;
+    height: 50%;
+    width: 20%;
+    transform: rotate(40deg) translateY(-10%) translateX(0%);
+}
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: solid 1px;
+  outline-offset: 2px;
+}
+		
+
+
+.embed-submit-field {
+	margin: 5% 0 6% 0;
+  position: relative;
+	display: grid;
+	place-items: center;
+}
+.embed-submit-field input {
+  width: 100%;
+}
+.embed-submit-field button {
+  position: absolute;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  background: #ededed;
+  border-radius: 3px;
+  padding: 10px;
+  transition: all 0.2s;
+}
+.embed-submit-field button:hover {
+  background-color: #37c88d;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+input[type="file"]::file-selector-button {
+  border-radius: 4px;
+  padding: 0 16px;
+  height: 40px;
+  cursor: pointer;
+  background-color: white;
+  border: 3px solid rgba(0, 0, 0, 0.16);
+	    border-color: rgba(17,17,17,0.2) !important;
+/*  box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.05);*/
+  margin-right: 16px;
+  margin-top: 2%;
+  transition: background-color 200ms;
+}
+
+/* file upload button hover state */
+input[type="file"]::file-selector-button:hover {
+  background-color: #f3f4f6;
+}
+
+/* file upload button active state */
+input[type="file"]::file-selector-button:active {
+  background-color: #e5e7eb;
 }

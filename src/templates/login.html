@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script type="text/javascript" src="{{ url_for('static', path='login.js') }}"></script>
+	<link href="{{ url_for('static', path='/login.css') }}" rel="stylesheet">
+	
+
+	 
+	<link rel="stylesheet" href="../static/login.css" />
+    <title>Friends Corner</title>
+</head>
+<body>
+	
+<div class="container" onclick="onclick">
+  <div class="top"></div>
+  <div class="bottom"></div>
+  <div class="center">
+    <h2>Please Sign In</h2>
+    <input type="email" placeholder="email" id="email"/>
+    <input type="password" placeholder="password" id="password"/>
+	<button class="log" onclick="submitForm()">Sign in</button>
+	<button class="log" onclick="submitFormout()">Sign out</button>
+    <h2>&nbsp;</h2>
+  </div>
+</div>
+	
+</body>
+</html>	

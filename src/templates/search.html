@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% block head %}
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>
+<!--    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>-->
 {% endblock %}
 
 {% block content %}
-<div class="flex justify-center flex-col items-center">
+<div style="  
+display: grid;
+flex-direction: column;
+justify-content: center;
+			text-align: center;
+height: 100%;">
+<!--
     <div class="flex my-3 gap-5">
         <input id="operation_search" type="text" placeholder="Тип операции" class="text-xl">
         <button onclick="searchForOperation()" class="border-2 rounded-3xl bg-gray-300 p-3">Поиск по операциям</button>
@@ -15,9 +21,33 @@
 
         <button onclick="test_log()" class="border-2 rounded-3xl bg-gray-300 p-3">test log</button>
     </div>
+-->
     <div>
-        <p id="demo1"> Ничегоо </p>
+        <p id="demo1"> Your id:  <span class="text-lg">{{ userdata.id }}</span> </p>
+		
     </div>
+	
+    <div>
+        <p id="demo1"> Your email:  <span class="text-lg">{{ userdata.email }}</span> </p>
+		
+    </div>
+	
+    <div>
+        <p id="demo1"> Your name:  <span class="text-lg">{{ userdata.username }}</span> </p>
+		
+    </div>
+	
+    <div>
+        <p id="demo1"> Your age:  <span class="text-lg">{{ userdata.age }}</span> </p>
+		
+    </div>
+	<div style="  display: flex;
+  flex-direction: row;
+  height: 100%;">
+	<img width="150" src="{{ url_for('static', path='photos/' ~ userdata.id ~ '_1.jpg') }}" alt="Your photo" class="mr-5">
+	<img width="150" src="{{ url_for('static', path='photos/' ~ userdata.id ~ '_2.jpg') }}" alt="Your photo" class="mr-5">
+	</div>
+
 <!--    <span>Например, Выплата купонов, Удержание НДФЛ по купонам, Вывод денежных средств, Продажа ценных бумаг</span>-->
 <!--    {% for operation in operations %}-->
 <!--        <div class="flex rounded-3 border-2 p-3 mt-5">-->
