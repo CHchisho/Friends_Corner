@@ -1,0 +1,354 @@
+{% extends "base.html" %}
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!--    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>-->
+{% endblock %}
+{% block content %}
+
+<style>
+	
+	
+body {
+	background-color: #f7ffff;
+    font: 400 normal 14px/18px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
+}
+.parent_0 {
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+	
+	
+/*
+	background-color: white;
+	border-radius: 7px;
+	width: 120%;
+	margin-left: -10%;
+	margin-bottom: 70%;
+	-webkit-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
+	box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
+	padding: 2% 10%;
+*/
+}
+.parent_1 {
+	display: flex;
+	flex-direction: column;
+	text-align: left;
+	width: 90%;
+	margin-right: 5%;
+}
+.parent_2 {
+display: flex;
+flex-direction: row;
+text-align: left;
+/*justify-content: space-between;*/
+}
+.label_1 {
+	font-size: 30px;
+	font-weight: bold;
+	font-style: normal;
+	margin: 6% 0 2% 0;
+}		
+.label_2 {
+		font-size: 15px;
+		font-style: normal;
+		font-weight: bold;
+		margin: 2% 0 1% 0;
+}
+
+
+</style>
+
+
+<div class="parent_0">
+	
+	<div style="
+	display: flex;
+	flex-direction: column;
+	width: 15%;">
+		
+		<div class="parent_2" style=" cursor: pointer;
+	margin: 5px 0px;
+	border: 4px solid #1C6EA4;
+	border-radius: 15px 15px 15px 15px;" onClick="selet_id(37)">
+<!--		<img width="150" src="{{ url_for('static', path='photos/26_1.jpg') }}" alt="Your photo" class="mr-5">
+-->
+			<img src="../static/photos/26_1.jpg" width="30%" style="border-radius: 10px;">
+
+			<div class="parent_1">
+
+				<div class="parent_2">
+					<h2 style="margin:4px;">Name</h2>
+					<h2 style="margin:4px;">18</h2>
+				</div>
+				<p style="margin:4px; color: grey;" id="id_37">37</p>
+			</div>
+		</div>
+		
+		<div class="parent_2" style=" cursor: pointer;
+	margin: 5px 0px;
+	border: 4px solid #1C6EA4;
+	border-radius: 15px 15px 15px 15px;"  onClick="selet_id(27)" >
+<!--		<img width="150" src="{{ url_for('static', path='photos/26_1.jpg') }}" alt="Your photo" class="mr-5">
+-->
+			<img src="../static/photos/26_1.jpg" width="30%" style="border-radius: 10px;">
+
+			<div class="parent_1">
+
+				<div class="parent_2">
+					<h2 style="margin:4px;">Name</h2>
+					<h2 style="margin:4px;">18</h2>
+				</div>
+				<p style="margin:4px; color: grey;" id="id_27">27</p>
+			</div>
+		</div>		
+		
+		
+		<div class="parent_2" style=" cursor: pointer;
+	margin: 5px 0px;
+	border: 4px solid #1C6EA4;
+	border-radius: 15px 15px 15px 15px;"  onClick="selet_id(26)" >
+<!--		<img width="150" src="{{ url_for('static', path='photos/26_1.jpg') }}" alt="Your photo" class="mr-5">
+-->
+			<img src="../static/photos/26_1.jpg" width="30%" style="border-radius: 10px;">
+
+			<div class="parent_1">
+
+				<div class="parent_2">
+					<h2 style="margin:4px;">Name</h2>
+					<h2 style="margin:4px;">18</h2>
+				</div>
+				<p style="margin:4px; color: grey;" id="id_26">26</p>
+			</div>
+		</div>
+		
+<!--		<button onclick="createElements()">Create Elements</button>-->
+	</div>
+	
+	
+	<div style="width: 85%">
+		
+
+<!-- Контейнер для элементов -->
+		<div id="container"></div>	
+	</div>
+</div>
+	
+	
+	
+    <style>
+        /* Стили для четных элементов */
+        .even {
+            position: relative;
+            background-color: lightcoral;
+            max-width: 40%;
+            border: 2px solid #61C6FF; /* Граница для четных элементов */
+            padding: 10px; /* Добавим немного отступа */
+			border-radius: 10px;
+			width: fit-content;
+			margin-left: 1%;
+			margin-right: auto;
+			margin-bottom: 0%;
+        }
+
+        /* Стили для нечетных элементов */
+        .odd {
+            position: relative;
+            background-color: lightblue;
+            max-width: 40%;
+            border: 2px solid red; /* Граница для нечетных элементов */
+            padding: 10px; /* Добавим немного отступа */
+			border-radius: 10px;
+			width: fit-content;
+			margin-left: auto;
+			margin-right: 1%;
+			margin-bottom: 0%;
+
+        }
+
+        /* Стиль контейнера */
+        #container {
+			width: 70%;
+			margin-left: 10%;
+            position: relative;
+            border: 2px solid black; /* Граница для контейнера */
+			border-radius: 20px;
+        }
+
+		
+		.dateBlock_even{
+            position: relative;
+            bottom: 0;
+            font-size: 0.8em;
+            color: #888;
+			margin-left: 1%;
+			margin-right: auto;
+        }		
+		.dateBlock_odd{
+            position: relative;
+            bottom: 0;
+            font-size: 0.8em;
+            color: #888;
+			margin-left: auto;
+			margin-right: 1%;
+			text-align: right;
+        }
+    </style>
+
+
+
+
+<div class="flex flex-col items-center">
+    <h1>WebSocket Chat</h1>
+    <h2>Your ID: <span id="ws-id">{{ userdata.id }}</span></h2>
+    <form action="" onsubmit="sendMessage(event)">
+<!--        <p>Send to: </p><input class="bg-green-300" type="text" id="user_id_recipient" autocomplete="off"/><br>-->
+        <p>Message: </p><input class="bg-green-300" type="text" id="messageText" autocomplete="off"/>
+        <button>Send</button>
+    </form>
+    <ul id='messages'>
+</ul>
+</div>
+
+<script>
+//    async function getLastMessages() {
+//        const url = 'http://localhost:8000/chat/last_messages'
+//        const response = await fetch(url, {
+//            method: 'GET',
+//			headers: { 'Accept': 'application/json' }
+//        })
+//        return response.json()
+//    }
+//
+//    getLastMessages()
+//        .then(messages => {
+//			console.log(messages)
+//            appendMessage("Предыдущие 5 сообщений:")
+//            messages.forEach(msg => {
+//                appendMessage(msg.message)
+//            })
+//            appendMessage("\nНовые сообщения:")
+//        })
+	
+	let client_id={{ userdata.id }};
+	var user_id_recipient = 1;
+	
+	function selet_id(id){
+		clearContainer()
+		user_id_recipient = id;
+		console.log('Selected ID: ', user_id_recipient);
+		
+		axios.get('/chat/last_messages/'+client_id+'/'+user_id_recipient, {
+		  headers: { 'Accept': 'application/json' }
+		})
+		.then(messages => {
+			console.log(messages.data);
+			messages.data.forEach(msg => {
+				createElements(msg.id_sender, msg.id_recipient, msg.message, msg.send_at)
+			})
+		})
+		.catch(error => {console.error(error);});
+	}
+
+//	var user_id_recipient = document.getElementById("id_37").innerText;
+// Получение последних предложений
+
+//axios.get('/chat/last_messages/'+client_id+'/'+user_id_recipient, {
+//  headers: { 'Accept': 'application/json' }
+//})
+//.then(messages => {
+//    console.log(messages.data);
+//    messages.data.forEach(msg => {
+//		createElements(msg.id_sender, msg.id_recipient, msg.message, msg.send_at)
+//    })
+//})
+//.catch(error => {console.error(error);});
+	
+	
+//axios.get('/chat/last_messages/'+client_id+'/'+user_id_recipient, {
+//  headers: { 'Accept': 'application/json' }
+//})
+//  .then(messages => {
+//    // Обработка успешного ответа
+//    console.log(messages.data);
+////	appendMessage("Предыдущие 5 сообщений:")
+//            messages.data.forEach(msg => {
+//				createElements(msg.id_sender, msg.id_recipient, msg.message, msg.send_at)
+////                appendMessage(msg.message)
+////                appendMessage(msg.send_at)
+//            })
+////            appendMessage("\nНовые сообщения:")
+//  })
+//  .catch(error => {
+//    // Обработка ошибки
+//    console.error(error);
+//  });
+	
+	
+	
+    function createElements(sender, recipient, msg, date) {
+        var container = document.getElementById('container');
+		var messageDiv = document.createElement('div');
+		var dateBlock = document.createElement('div');
+		dateBlock.textContent = date;
+
+		var p = document.createElement('p');
+		if (sender==client_id) {
+			p.innerHTML = msg;
+			p.classList.add('odd');
+			dateBlock.classList.add('dateBlock_odd');
+		} else {
+			p.textContent = msg;
+			p.classList.add('even');
+			dateBlock.classList.add('dateBlock_even');
+		}
+		messageDiv.appendChild(p);
+		messageDiv.appendChild(dateBlock);
+		container.appendChild(messageDiv);
+    }
+	
+	function clearContainer() {
+		var container = document.getElementById('container');
+		container.innerHTML = ''; // Устанавливаем пустую строку в качестве содержимого
+	}
+	
+    function appendMessage(msg) {
+        let messages = document.getElementById('messages')
+        let message = document.createElement('li')
+        let content = document.createTextNode(msg)
+        message.appendChild(content)
+        messages.appendChild(message)
+    }
+
+//    let client_id = Date.now()
+//    document.querySelector("#ws-id").textContent = client_id;
+//	let client_id = document.getElementById("ws-id").value;
+	
+	
+// Веб сокет
+    let ws = new WebSocket(`ws://localhost:8000/chat/ws/${client_id}`);
+    ws.onmessage = function (event) {
+		
+		data = JSON.parse(event.data.replace(/'/g, '"'));
+		let currentDate = new Date();
+		createElements(data.id_sender, data.id_recipient, data.message, currentDate.toLocaleString())
+    };
+
+    function sendMessage(event) {
+		
+//        let user_id_recipient = 37;
+		console.log(user_id_recipient);
+		
+        let message = document.getElementById("messageText");
+		
+        ws.send(`${user_id_recipient}%%@%%${message.value}`);
+		
+		
+        message.value = '';
+        event.preventDefault();
+    }
+</script>
+{% endblock %}
+
+
+

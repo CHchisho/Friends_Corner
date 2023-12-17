@@ -47,41 +47,9 @@ def get_search_page(request: Request, user: User = Depends(current_user)):
     # print(user.id)
     # print(type(user))
 
-    return (templates.TemplateResponse("search.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}}))
+    return templates.TemplateResponse("search.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
 
+@router.get("/chat")
+def get_chat_page(request: Request, user: User = Depends(current_user)):
+    return templates.TemplateResponse("chat.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
 
-
-class User(BaseModel):
-    email: str
-    password: str
-    is_active: int
-    is_superuser: int
-    is_verified: int
-    username: str
-    phonenumber: str
-    gender: str
-    regions: str
-    your_age: int
-    hobby: list
-    friend_gender: str
-    friend_age: int
-
-
-@router.post("/search_api/")
-def get_search_api(q: User):
-    # print('пост зарпос')
-    # print(id)
-    print(q)
-    return {"qdata": str(q)}
-
-# class Item(BaseModel):
-#     qwe: int
-# @router.post("/search_api/{page_id}")
-# async def search_api(page_id: int, item: Item, request: Request):
-#     data = await request.json()
-#     qwe = data.get("qwe")
-#
-#     return {"message": "Data processed"}
-# @router.exception_handler(404)
-# async def custom_404_handler(request, __):
-#     return templates.TemplateResponse("404.html", {"request": request})

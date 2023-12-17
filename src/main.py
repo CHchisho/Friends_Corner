@@ -12,6 +12,7 @@ from auth.utils import convert_to_jpeg
 from operations.router import router as router_operation
 from tasks.router import router as router_tasks
 from pages.router import router as router_pages
+from chat.router import router as router_chat
 from redis import asyncio as aioredis
 
 from fastapi.staticfiles import StaticFiles
@@ -41,6 +42,7 @@ app.include_router(
 app.include_router(router_operation)
 app.include_router(router_tasks)
 app.include_router(router_pages)
+app.include_router(router_chat)
 
 origins = [
     "http://localhost:51974",
