@@ -53,3 +53,9 @@ def get_search_page(request: Request, user: User = Depends(current_user)):
 def get_chat_page(request: Request, user: User = Depends(current_user)):
     return templates.TemplateResponse("chat.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
 
+
+
+@router.get("/match")
+def get_chat_page(request: Request, user: User = Depends(current_user)):
+    return templates.TemplateResponse("match.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
+

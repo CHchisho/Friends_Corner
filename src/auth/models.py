@@ -66,6 +66,7 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     regions = Column(String, nullable=False)
     your_age = Column(Integer, nullable=False)
     hobbies = Column(String)
+    about_you = Column(String)
     friend_gender = Column(String, nullable=False)
     friend_age_from = Column(Integer, nullable=False)
     friend_age_to = Column(Integer, nullable=False)
@@ -76,4 +77,7 @@ class User(SQLAlchemyBaseUserTable[int], Base):
     is_active: bool = Column(Boolean, default=True, nullable=False)
     is_superuser: bool = Column(Boolean, default=False, nullable=False)
     is_verified: bool = Column(Boolean, default=False, nullable=False)
+
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 

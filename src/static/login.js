@@ -23,9 +23,9 @@
 function submitForm() {
 try {
 	const headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
+	'Accept': 'application/json',
+	'Content-Type': 'application/x-www-form-urlencoded'
+	};
 
 const data = new URLSearchParams();
 data.append('grant_type', '');

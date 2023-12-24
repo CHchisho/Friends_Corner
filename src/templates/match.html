@@ -1,0 +1,271 @@
+{% extends "base.html" %}
+{% block head %}    
+	<meta charset="UTF-8">
+<!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!--    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>-->
+{% endblock %}
+
+{% block content %}
+
+<body>
+
+    <style>
+        #container {
+            position: relative;
+/*            width: 20%;*/
+/*            height: 450px;*/
+			width: 20vw;
+			min-width: 300px;
+			height: 60vh;
+			min-height: 400px;
+            background: url("{{ url_for('static', path='photos/' ~ userdata.id ~ '_1.jpg') }}") no-repeat center center;
+            background-size: cover;
+			background-color: black;
+			
+        }
+
+        #userInfo {
+/*            position: absolute;*/
+            top: 20px;
+            left: 20px;
+            color: black;
+			display: flex;
+			flex-direction: row;
+        }
+		p {
+			margin-right: 10px;
+			font-size: 2rem;
+			color: #6C00FF;
+		    font-weight: bold;
+		}
+		
+
+        #buttonsContainer {
+            position: absolute;
+            bottom: 0px;
+/*            left: 20px;*/
+			width: 100%;
+			height: 20%;
+            display: flex;
+			justify-content: space-around;
+			align-items: flex-end;
+        }
+
+        .button {
+            width: 25%;
+            height: 90%;
+/*            margin-right: 10px;*/
+            cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 2rem;
+        }
+
+        #likeButton {
+            background-color: lightgreen;
+        }
+
+        #dislikeButton {
+            background-color: lightpink;
+        }
+
+        #downButton {
+            background-color: lightblue;
+        }
+    </style>
+
+	
+<div>
+	<div style="
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 3%;
+	">
+		
+		<div id="userInfo">	
+			<p id="name">Name</p>
+			<p id="age">18</p>			
+			<p id="id">10</p>
+		</div>
+		<div id="container">
+			<div id="buttonsContainer">
+				<div id="likeButton" class="button" onclick="send_answer_match(1)">👍</div>
+				<div id="downButton" class="button" >⬇</div>
+				<div id="dislikeButton" class="button" onclick="send_answer_match(2)">👎</div>
+			</div>
+		</div>
+		
+		<div>
+			<p id="info"></p>
+		</div>
+		
+	</div>
+</div>
+	
+	<br><br><br><br><br><br>
+	 
+	
+	
+	
+
+
+
+<script>
+	
+	var client_name='{{ userdata.username }}';
+	var client_age={{ userdata.age }}; 
+	var client_id={{ userdata.id }};
+	var friend_id = 1;
+	
+	var request = 0;
+	let matchArray = [];
+//	var user_id_recipient = 1;
+	
+	document.getElementById('name').textContent = client_name;
+	document.getElementById('age').textContent = client_age;
+	document.getElementById('id').textContent = client_id;
+	
+	function get_new_match(){
+//		clearContainer()
+//		user_id_recipient = id;
+//		console.log('Selected ID: ', user_id_recipient);
+		axios.get('/chat/match/'+client_id, {
+		  headers: { 'Accept': 'application/json' }
+		})
+		.then(messages => {
+			console.log(messages.data);
+			matchArray = messages.data;
+			
+			if (matchArray.length > 0) {update_info(0);}
+			else {no_anymore();}
+			
+		})
+		.catch(error => {console.error(error);});
+	}
+	get_new_match();
+
+
+//function submitForm() {
+//	try {
+//		axios.post('/chat/match'+client_id,
+//		{
+//			email: document.getElementById('email').value,
+//			password: document.getElementById('password').value,
+//		}, {headers: { 'Accept': 'application/json' }})
+////		.then(res => {
+////			console.log(res.data);
+////		})
+//		.catch(err => {console.log(err);});
+//	}
+//	catch (error) {console.error(error);}}
+	
+function send_answer_match(answer_) {
+	try {
+		axios.post('/chat/match/',
+		{
+			id_sender: client_id,
+			id_recipient: friend_id,
+			answer: answer_,
+		}, {headers: { 'Accept': 'application/json' }})
+		.then(res => {
+//			console.log(res.data);
+			
+			console.log('get answer from post');
+			console.log(request);
+			
+			if (request<4){
+		//		1
+				if (request+2 > matchArray.length  && matchArray.length < 5){no_anymore();return;}
+				
+				request++;
+				update_info(request);
+			}
+			else {
+				get_new_match();
+				console.log('get_new_match start')
+				request=0;
+			}
+			
+			
+		})
+		.catch(err => {console.log(err);});
+	}
+	catch (error) {console.error(error);}
+	
+	
+	
+
+	
+	
+//	alert('Button clicked: ' + answer_);
+//	alert('New user:');
+}
+	
+function update_info(id_){
+	try {
+	friend_id = matchArray[id_].id;
+	document.getElementById('name').textContent = matchArray[id_].username;
+	document.getElementById('age').textContent = matchArray[id_].your_age;
+	document.getElementById('id').textContent = matchArray[id_].id;
+	document.getElementById('info').textContent = matchArray[id_].about_you;
+
+	let imagePath = matchArray[id_].id + '_1.jpg';
+	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + imagePath + '")';
+	}
+	catch (error) {console.error(error);}
+}
+	
+function no_anymore(){
+	document.getElementById('name').textContent = 'Sorry, there are no suitable candidates yet.';
+	document.getElementById('age').textContent = '';
+	document.getElementById('id').textContent = '';
+	document.getElementById('info').textContent = '';
+
+	let imagePath = 'nobody.jpg';
+	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + imagePath + '")';
+}
+	
+//function createElements(sender, recipient, msg, date) {
+//	var container = document.getElementById('container');
+//	var messageDiv = document.createElement('div');
+//	var dateBlock = document.createElement('div');
+//	dateBlock.textContent = date;
+//
+//	var p = document.createElement('p');
+//	if (sender==client_id) {
+//		p.innerHTML = msg;
+//		p.classList.add('odd');
+//		dateBlock.classList.add('dateBlock_odd');
+//	} else {
+//		p.textContent = msg;
+//		p.classList.add('even');
+//		dateBlock.classList.add('dateBlock_even');
+//	}
+//	messageDiv.appendChild(p);
+//	messageDiv.appendChild(dateBlock);
+//	container.appendChild(messageDiv);
+//}
+	
+//	function clearContainer() {
+//		var container = document.getElementById('container');
+//		container.innerHTML = ''; // Устанавливаем пустую строку в качестве содержимого
+//	}
+	
+//    function appendMessage(msg) {
+//        let messages = document.getElementById('messages')
+//        let message = document.createElement('li')
+//        let content = document.createTextNode(msg)
+//        message.appendChild(content)
+//        messages.appendChild(message)
+//    }
+
+
+</script>
+
+{% endblock %}

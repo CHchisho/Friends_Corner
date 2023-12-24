@@ -10,3 +10,9 @@ class MessagesModel(BaseModel):
 
     class Config:
         orm_mode = True
+
+class MatchModel(BaseModel):
+    id: int
+    id_sender: int
+    id_recipient: int
+    answer: int

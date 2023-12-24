@@ -8,6 +8,11 @@ class UserRead(schemas.BaseUser[int]):
     email: str
     username: str
     your_age: int
+    gender: str
+    regions: str
+    hobbies: str
+    about_you: str
+
     # role_id: int
     is_active: bool = True
     is_superuser: bool = False
@@ -27,6 +32,7 @@ class UserCreate(schemas.BaseUserCreate):
     regions: str
     your_age: int
     hobbies: str
+    about_you: str
     friend_gender: str
     friend_age_from: int
     friend_age_to: int

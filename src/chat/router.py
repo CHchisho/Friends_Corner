@@ -6,11 +6,13 @@ from pydantic import BaseModel
 
 from auth.base_config import auth_backend, fastapi_users
 from auth.models import User
-from sqlalchemy import insert, select
+from sqlalchemy import insert, select, asc
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from chat.models import Messages
-from chat.schemas import MessagesModel
+from chat.models import Messages, Match
+from chat.schemas import MessagesModel, MatchModel
+from auth.models import User
+from auth.schemas import UserRead
 from database import async_session_maker, get_async_session
 
 router = APIRouter(
@@ -107,3 +109,76 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int ):
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         # await manager.broadcast(f"Client #{client_id} left the chat")
+
+
+
+
+
+
+@router.get("/match/{client_id}")
+async def get_match(
+        client_id: int,
+        session: AsyncSession = Depends(get_async_session),
+) -> List[UserRead]:
+    # query = select(Messages).order_by(Messages.id.desc()).limit(10)
+    query = select(User).where(
+        (User.id == client_id)
+    )
+    user_data = await session.execute(query)
+    user_data_list = [msg[0].as_dict() for msg in user_data.all()]
+
+    query2 = select(User).where(
+        (User.gender == user_data_list[0]['friend_gender']) &
+        (User.your_age <= user_data_list[0]['friend_age_to']) &
+        (User.your_age >= user_data_list[0]['friend_age_from']) &
+        (User.id != user_data_list[0]['id'])
+    ).order_by(asc(User.id))
+    user_data2 = await session.execute(query2)
+    user_data_list2 = [msg[0].as_dict() for msg in user_data2.all()]
+
+    query3 = select(Match).where(
+        (Match.id_sender == user_data_list[0]['id'])
+        # (Match.id_recipient == user_data_list2[0]['id'])
+    )
+    match_data = await session.execute(query3)
+    match_data_list = [msg[0].as_dict()['id_recipient'] for msg in match_data.all()]
+
+    id_to_delete = []
+    for i in range(len(user_data_list2)):
+        friend_id = user_data_list2[i]['id']
+        # print(friend_id)
+        if friend_id in match_data_list:
+            id_to_delete.append(friend_id)
+
+    # print('Your info:', user_data_list[0],'\n')
+    # print('Find friend info:', user_data_list2,'\n')
+    print('Уже оцененные:', match_data_list)
+    user_data_list2 = [user_data for user_data in user_data_list2 if not(user_data['id'] in id_to_delete)]
+    # print('Find friend new info:', '\n'.join(str(u) for u in user_data_list2),'\n')
+    print('Подходящие кандидаты: ', [us['id'] for us in user_data_list2])
+    print('Отправленные id: ', [us['id'] for us in user_data_list2][:5])
+    return user_data_list2[:5]
+
+class Answer(BaseModel):
+    id_sender: int
+    id_recipient: int
+    answer: int
+@router.post("/match")
+async def post_match(answer: Answer):
+    print(answer)
+
+    try:
+        async with async_session_maker() as session:
+            stmt = insert(Match).values(
+
+                id_sender=answer.id_sender,
+                id_recipient=answer.id_recipient,
+                answer = answer.answer
+            )
+            await session.execute(stmt)
+            await session.commit()
+    finally:
+        return {"status": 201}
+
+
+

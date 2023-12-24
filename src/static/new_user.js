@@ -1,7 +1,7 @@
 
 
 function submitForm() {
-	
+	console.log(document.getElementById('about_you').value);
 	const checks = document.querySelectorAll('input[name="hobby"]');
 	let hobbies = [];
 	checks.forEach(el => {if (el.checked) {hobbies.push(el.value);}});
@@ -19,6 +19,7 @@ function submitForm() {
 			regions: document.getElementById('regions').value,
 			your_age: document.getElementById('your_age').value,
 			hobbies: hobbies.join('&'),
+			about_you: 'awdawdkani22 u udw aiwd ad w',
 			friend_gender: document.querySelector('input[name="gender_friend"]:checked').value,
 			friend_age_from: document.getElementById('friend_age_from').value,
 			friend_age_to: document.getElementById('friend_age_to').value,
