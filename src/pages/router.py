@@ -39,15 +39,9 @@ def get_login_page(request: Request):
 
 current_user = fastapi_users.current_user()
 
-@router.get("/search")
+@router.get("/me")
 def get_search_page(request: Request, user: User = Depends(current_user)):
-    # print(user.username)
-    # print(user.your_age)
-    # print(user.email)
-    # print(user.id)
-    # print(type(user))
-
-    return templates.TemplateResponse("search.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
+    return templates.TemplateResponse("me.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
 
 @router.get("/chat")
 def get_chat_page(request: Request, user: User = Depends(current_user)):

@@ -20,7 +20,7 @@
 //	catch (error) {console.error(error);}
 //	}
 
-function submitForm() {
+function login() {
 try {
 	const headers = {
 	'Accept': 'application/json',
@@ -45,7 +45,7 @@ axios.post('/auth/login', data, { headers })
 alert('Login!');
 
 	
-var relativePath = 'pages/search';
+var relativePath = 'pages/me';
 
 // Получаем базовый URL текущей страницы
 var baseURL = window.location.origin;
@@ -63,7 +63,7 @@ catch (error) {console.error(error);}
 
 
 
-function submitFormout() {
+function logout() {
 try {
 const headers = {
   'Accept': 'application/json'

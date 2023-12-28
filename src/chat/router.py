@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 from auth.base_config import auth_backend, fastapi_users
 from auth.models import User
-from sqlalchemy import insert, select, asc
+from sqlalchemy import insert, select, asc, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from chat.models import Messages, Match
@@ -32,16 +32,32 @@ class ConnectionManager:
     def disconnect(self, websocket: WebSocket):
         self.active_connections.remove(websocket)
 
-    async def send_personal_message(self, message: str, websocket: WebSocket):
-        await websocket.send_text(message)
+    # async def send_personal_message(self, message: str, websocket: WebSocket):
+    #     await websocket.send_text(message)
 
-    async def broadcast(self, user_id_recipient: int, message: str, user_id_sender: int):
+    async def send_personal_message(self, user_id_recipient: int, message: str, user_id_sender: int, websocket: WebSocket):
         await self.add_messages_to_database(user_id_recipient, message, user_id_sender)
 
-        for connection in self.active_connections:
-            await connection.send_text(str({"id_sender":str(user_id_sender),
+        await websocket.send_text(str({"id_sender":str(user_id_sender),
                                          "id_recipient": str(user_id_recipient),
                                          "message": str(message)}))
+
+    # async def broadcast(self, user_id_recipient: int, message: str, user_id_sender: int):
+    #     await self.add_messages_to_database(user_id_recipient, message, user_id_sender)
+    #
+    #     for connection in self.active_connections:
+    #         await connection.send_text(str({"id_sender":str(user_id_sender),
+    #                                      "id_recipient": str(user_id_recipient),
+    #                                      "message": str(message)}))
+
+
+
+
+
+
+
+
+
 
     @staticmethod
     async def add_messages_to_database(user_id_recipient: int, message: str, user_id_sender: int):
@@ -62,6 +78,40 @@ class ConnectionManager:
 
 
 manager = ConnectionManager()
+
+
+
+@router.get("/approved_matches/{client_id}")
+async def get_approved_matches(
+        client_id: int,
+        session: AsyncSession = Depends(get_async_session),
+):
+
+    query = select(Match).where(
+        or_(
+            Match.id_sender == client_id,
+            Match.id_recipient == client_id
+        ) & (Match.answer == 1)
+    )
+    match_data = await session.execute(query)
+    match_data_list = [msg[0].as_dict() for msg in match_data.all()]
+
+    # print(user_data_list)
+    unique_recipients = set()
+    for item in match_data_list:
+        if any((elem['id_sender'] == item['id_recipient'] and elem['id_recipient'] == item['id_sender']) for elem in
+               match_data_list):
+            unique_recipients.add(item['id_recipient'])
+
+    result_id = list(unique_recipients)
+    # result_id.remove(client_id)
+
+    query2 = select(User).where(User.id.in_(result_id)).order_by(User.id.desc())
+    user_data = await session.execute(query2)
+    user_data_list = [msg[0].as_dict() for msg in user_data.all()]
+
+
+    return user_data_list
 
 
 @router.get("/last_messages/{client_id}/{recipient_id}")
@@ -90,7 +140,7 @@ async def get_last_messages(
         # return datetime.strptime(item['send_at'], '%m.%d.%Y, %H:%M:%S')
         return item['id']
     sorted_data = sorted(messages_list, key=convert_to_datetime)
-    print(sorted_data[-20:])
+    # print(sorted_data[-20:])
     return sorted_data[-20:]
     # return messages.scalars().all()
 
@@ -104,8 +154,9 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int ):
             data = await websocket.receive_text()
 
             data = data.split('%%@%%')
-            print('\n      ', data, '\n')
-            await manager.broadcast(user_id_sender=client_id, user_id_recipient=int(data[0]), message=data[1])
+            # print('\n      ', data, '\n')
+            # await manager.broadcast(user_id_sender=client_id, user_id_recipient=int(data[0]), message=data[1])
+            await manager.send_personal_message(user_id_sender=client_id, user_id_recipient=int(data[0]), message=data[1],websocket=websocket )
     except WebSocketDisconnect:
         manager.disconnect(websocket)
         # await manager.broadcast(f"Client #{client_id} left the chat")
@@ -119,7 +170,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int ):
 async def get_match(
         client_id: int,
         session: AsyncSession = Depends(get_async_session),
-) -> List[UserRead]:
+):
     # query = select(Messages).order_by(Messages.id.desc()).limit(10)
     query = select(User).where(
         (User.id == client_id)
@@ -152,12 +203,18 @@ async def get_match(
 
     # print('Your info:', user_data_list[0],'\n')
     # print('Find friend info:', user_data_list2,'\n')
-    print('Уже оцененные:', match_data_list)
-    user_data_list2 = [user_data for user_data in user_data_list2 if not(user_data['id'] in id_to_delete)]
+    # print('Уже оцененные:', match_data_list)
+    # user_data_list2 = [user_data for user_data in user_data_list2 if not(user_data['id'] in id_to_delete)]
+    user_data_list3=[]
+    for user_data in user_data_list2:
+        if not(user_data['id'] in id_to_delete):
+            for i in ['email','is_active','is_superuser', 'is_verified','friend_age_from','friend_age_to','friend_gender','hashed_password','phone_number','registered_at']:
+                user_data.pop(i)
+            user_data_list3.append(user_data)
     # print('Find friend new info:', '\n'.join(str(u) for u in user_data_list2),'\n')
-    print('Подходящие кандидаты: ', [us['id'] for us in user_data_list2])
-    print('Отправленные id: ', [us['id'] for us in user_data_list2][:5])
-    return user_data_list2[:5]
+    # print('Подходящие кандидаты: ', [us['id'] for us in user_data_list2])
+    # print('Отправленные id: ', [us['id'] for us in user_data_list2][:5])
+    return user_data_list3[:5]
 
 class Answer(BaseModel):
     id_sender: int
@@ -165,7 +222,7 @@ class Answer(BaseModel):
     answer: int
 @router.post("/match")
 async def post_match(answer: Answer):
-    print(answer)
+    # print(answer)
 
     try:
         async with async_session_maker() as session:

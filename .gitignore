@@ -1,0 +1,5 @@
+/src/static/photos/
+/.idea/
+/.pytest_cache/
+/migrations/versions/
+/tests/

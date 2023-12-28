@@ -12,32 +12,46 @@
 <body>
 
     <style>
+		body{
+			background-image: url("{{ url_for('static', path='images/white.jpg') }}");
+			background-size: cover;
+		}
         #container {
             position: relative;
+			margin-top: 2%;
 /*            width: 20%;*/
 /*            height: 450px;*/
-			width: 20vw;
+			width: 25vw;
 			min-width: 300px;
-			height: 60vh;
+			height: 75vh;
 			min-height: 400px;
             background: url("{{ url_for('static', path='photos/' ~ userdata.id ~ '_1.jpg') }}") no-repeat center center;
             background-size: cover;
 			background-color: black;
 			
+			border-radius: 20px;
+			-webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+			-moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+			box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+			
         }
 
         #userInfo {
-/*            position: absolute;*/
-            top: 20px;
-            left: 20px;
+			width: 50%;
             color: black;
+			background-color: #eeeeee;
 			display: flex;
-			flex-direction: row;
+			flex-direction: column;
+			border-radius: 10px;
+			-webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+			-moz-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.6);
+			box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.4);
+			padding: 2%;
         }
 		p {
-			margin-right: 10px;
-			font-size: 2rem;
-			color: #6C00FF;
+			margin-bottom: 10px;
+			font-size: 1.05rem;
+/*			color: #5065FF;*/
 		    font-weight: bold;
 		}
 		
@@ -54,27 +68,68 @@
         }
 
         .button {
-            width: 25%;
-            height: 90%;
+            width: 24%;
+            height: 80%;
 /*            margin-right: 10px;*/
             cursor: pointer;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			font-size: 2rem;
+			font-size: 2.5rem;
+			border-radius: 10px;
+			transition: transform 0.5s ease;
+			user-select: none;
         }
+		.button:hover {
+/*			background-color: #4477FF;*/
+			transform: translateY(-5px);
+/*            width: 25%;*/
+            height: 80%;
+		}
+        .buttonarrow, .buttonarrow2 {
+            cursor: pointer;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 2rem;
+			border-radius: 10px;
+			transition: transform 0.5s ease;
+			margin: 10px;
+			font-size: 60px;
+			color: black;
+			-webkit-text-stroke: 2px #eeeeee;
+			text-stroke: 2px #eeeeee; 
+			user-select: none;
+			
+        }
+		.buttonarrow:hover {transform: translateX(-7px);}
+		.buttonarrow2:hover {transform: translateX(7px);}
 
         #likeButton {
             background-color: lightgreen;
+			padding-bottom: 10px;
         }
 
         #dislikeButton {
             background-color: lightpink;
         }
-
-        #downButton {
-            background-color: lightblue;
-        }
+		
+		.label_1 {
+			font-size: 2.5em;
+			font-weight: bold;
+			font-style: normal;
+		}		
+		.label_2 {
+			font-size: 2em;
+			font-style: normal;
+			font-weight: bold;
+		}
+@media (max-width: 600px) {
+#userInfo {
+margin-top: 30px;
+width: 80%;}
+#container{margin-top: 20%;}
+}
     </style>
 
 	
@@ -82,33 +137,52 @@
 	<div style="
 
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	justify-content: space-around;
 	margin-top: 3%;
-	">
+	flex-wrap: wrap;
+	"> 
 		
-		<div id="userInfo">	
-			<p id="name">Name</p>
-			<p id="age">18</p>			
-			<p id="id">10</p>
-		</div>
+
 		<div id="container">
+			
+			<div style="height: 100%; width: 100%; position: absolute; display:flex; justify-content: space-between;">
+				<div class="buttonarrow" onclick="select_image(1)">❮</div>
+				<div class="buttonarrow2" onclick="select_image(2)">❯</div>
+			</div>
+			
 			<div id="buttonsContainer">
 				<div id="likeButton" class="button" onclick="send_answer_match(1)">👍</div>
-				<div id="downButton" class="button" >⬇</div>
+<!--				<div id="downButton" class="button" >⬇</div>-->
 				<div id="dislikeButton" class="button" onclick="send_answer_match(2)">👎</div>
 			</div>
 		</div>
 		
-		<div>
+		<div id="userInfo">
+			<label class="label_1">About Me</label>
+			<p id="name" class="label_2">Name</p> 
+<!--
+			<div style="display: flex; flex-direction: row;"> 
+				<p id="age" class="label_2">18</p> 
+			</div>
+-->
+			
+			<p id="region"></p>
+			<p id="hobbies"></p>
+<!--			<p id="id" style="color:rgba(0,0,0,0.00);">10</p>-->
 			<p id="info"></p>
 		</div>
 		
 	</div>
+	
+	<div>
+		
+	</div>
 </div>
 	
-	<br><br><br><br><br><br>
+<!--	<br><br><br><br><br><br>-->
 	 
 	
 	
@@ -127,9 +201,9 @@
 	let matchArray = [];
 //	var user_id_recipient = 1;
 	
-	document.getElementById('name').textContent = client_name;
-	document.getElementById('age').textContent = client_age;
-	document.getElementById('id').textContent = client_id;
+//	document.getElementById('name').textContent = client_name;
+//	document.getElementById('age').textContent = client_age;
+//	document.getElementById('id').textContent = client_id;
 	
 	function get_new_match(){
 //		clearContainer()
@@ -196,24 +270,24 @@ function send_answer_match(answer_) {
 		})
 		.catch(err => {console.log(err);});
 	}
-	catch (error) {console.error(error);}
-	
-	
-	
-
-	
-	
+	catch (error) {console.error(error);}	
 //	alert('Button clicked: ' + answer_);
 //	alert('New user:');
 }
+
 	
+// Обновляет информацию о человеке в правом контейнере
 function update_info(id_){
 	try {
 	friend_id = matchArray[id_].id;
-	document.getElementById('name').textContent = matchArray[id_].username;
-	document.getElementById('age').textContent = matchArray[id_].your_age;
-	document.getElementById('id').textContent = matchArray[id_].id;
-	document.getElementById('info').textContent = matchArray[id_].about_you;
+	document.getElementById('name').textContent = matchArray[id_].username+', '+matchArray[id_].your_age + ', '+matchArray[id_].gender;
+//	document.getElementById('age').textContent = matchArray[id_].your_age;
+//	document.getElementById('id').textContent = matchArray[id_].id;
+//	document.getElementById('id').textContent = '';
+//	document.getElementById('region').textContent = "I'm from: " + matchArray[id_].regions.charAt(0).toUpperCase() + matchArray[id_].regions.slice(1);
+	document.getElementById('region').textContent = "I'm from: " + matchArray[id_].regions;
+	document.getElementById('hobbies').textContent = "My hobbies: " + matchArray[id_].hobbies.split('&').join(', ');
+	document.getElementById('info').textContent = "More about me: " + matchArray[id_].about_you;
 
 	let imagePath = matchArray[id_].id + '_1.jpg';
 	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + imagePath + '")';
@@ -221,14 +295,27 @@ function update_info(id_){
 	catch (error) {console.error(error);}
 }
 	
+
+// Срабатывает, когда нет больше подходящих кандидатов
 function no_anymore(){
 	document.getElementById('name').textContent = 'Sorry, there are no suitable candidates yet.';
-	document.getElementById('age').textContent = '';
-	document.getElementById('id').textContent = '';
+//	document.getElementById('age').textContent = '';
+//	document.getElementById('id').textContent = '';
 	document.getElementById('info').textContent = '';
+	document.getElementById('hobbies').textContent = '';
+	
+	document.getElementById('region').textContent = '';
 
 	let imagePath = 'nobody.jpg';
 	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + imagePath + '")';
+}
+	
+	
+// Переключает фотографии человека
+let image_number=1;
+function select_image() {
+	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + matchArray[request].id + '_'+image_number+'.jpg' + '")';
+	image_number = (image_number === 1) ? 2 : 1;
 }
 	
 //function createElements(sender, recipient, msg, date) {

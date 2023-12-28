@@ -9,19 +9,73 @@
     {% block head %}{% endblock %}
     <title>Friends Corner</title>
 </head>
+<body>
 
-    <nav class="flex justify-between text-3xl my-3">
-        <ul class="flex ml-10">
-            <li>Friends Corner</li>
-        </ul>
-        <ul class="flex gap-5 mr-10">
-            <li>Мой аккаунт</li>
-            <li>Выйти</li>
-        </ul>
-    </nav>
-    <hr>
+<style>
+       .navbar {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			background-color: #333;
+			padding: 0 20px;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+			z-index: 1000;
+			display: flex;
+			flex-direction: row;
+
+			justify-content: center;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+        }
+
+        /* Стили для ссылок в панели навигации */
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.7em;
+			transition: all 0.5s ease;
+			cursor: pointer;
+        }
+
+        /* Стиль для активной ссылки */
+        .navbar a:hover {
+            color: #8bdbf5; /* Цвет для активной ссылки */
+        }
+	
+	
+	body{margin-top: 5%;}
+</style>
+	
+<div class="navbar">
+	<img width="300px" src="{{ url_for('static', path='images/logo.png') }}" alt="FRIENDS CORNER" onclick="window.location.href='/pages/me';" style="cursor:pointer;">
+	<div>
+		<a href="/pages/me" >Me</a>
+		<a href="/pages/match">Match</a>
+		<a href="/pages/chat">Chat</a>
+		<a onclick="logout()">Log out</a>
+	</div>
+</div>
+	
+	
     <div id="content">
         {% block content %}{% endblock %}
     </div>
+
+<script>
+function logout() {
+	try {
+	axios.post('/auth/logout', null, { 'Accept': 'application/json'})
+	  .catch(error => {
+		console.error(error);
+	  });
+	alert('Logout!');
+	}
+	catch (error) {console.error(error);}
+}
+</script>	
+	
 </body>
 </html>
