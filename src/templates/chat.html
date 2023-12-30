@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<link href="{{ url_for('static', path='/chat.css') }}" rel="stylesheet">
-	
+
 	<link rel="stylesheet" href="../static/chat.css" />
-<!--    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>-->
 {% endblock %}
 {% block content %}
 
@@ -18,7 +17,22 @@ body{
 	background-size: cover;
     font: 400 normal 14px/18px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
 }
+h1, h2, h3, h4, h5, h6 {
+    font-size: 1.1rem;
+	margin: 5px 0;
 
+	word-wrap: break-word;
+	font-weight: 500;
+}
+button {
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+    font-size: 120%;
+    font-weight: bold;
+    line-height: initial;
+	margin-left: 10px;
+	background-color: #fff;
+}
 </style>
 
 <div class="parent_0">
@@ -42,7 +56,6 @@ body{
 	
 	
     <style>
- 
     </style>
 
 
@@ -51,12 +64,12 @@ body{
 
 <script>
 
-	
+
 let client_id={{ userdata.id }};
 var user_id_recipient = 1;
 var matchArray = [];
 let first_click = 0;
-	
+
 function get_approved_matches(){
 	axios.get('/chat/approved_matches/'+client_id, {
 	  headers: { 'Accept': 'application/json' }
@@ -87,9 +100,9 @@ function get_approved_matches(){
 			parentDiv3.setAttribute('class', 'parent_3');
 
 
-			let h2Name = document.createElement('h2');
-			h2Name.textContent = j.username+',';
-			let h2Age = document.createElement('h2');
+			let h2Name = document.createElement('h3');
+			h2Name.textContent = j.username+",";
+			let h2Age = document.createElement('h3');
 			h2Age.textContent = j.your_age;
 
 			// Create the paragraph element with a unique ID
@@ -138,7 +151,7 @@ function selet_id(clickedElement, id){
 		messages.data.forEach(msg => {
 			createElements(msg.id_sender, msg.id_recipient, msg.message, msg.send_at)
 		})
-		
+
 //================================================
 //		Create message div
 		if (first_click == 0) {

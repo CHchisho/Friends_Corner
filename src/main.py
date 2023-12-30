@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Request
 from fastapi.middleware.cors import CORSMiddleware
 
 from auth.base_config import auth_backend, fastapi_users
@@ -73,6 +73,9 @@ async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(.
     return {"status": 201}
 
 
+@app.get("/")
+def first_page(request: Request):
+    return templates.TemplateResponse("index.html",{"request": request})
 
 
 

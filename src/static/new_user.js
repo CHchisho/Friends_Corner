@@ -59,6 +59,10 @@ function submitForm() {
 	}
 	catch (error) {console.error(error);}
 	
+	var relativePath = '/pages/login';
+	var baseURL = window.location.origin;
+	var fullURL = baseURL + relativePath;
+	window.open(fullURL, '_blank');
 }
 
 
