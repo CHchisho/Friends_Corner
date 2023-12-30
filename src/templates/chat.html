@@ -4,6 +4,9 @@
 <!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link href="{{ url_for('static', path='/chat.css') }}" rel="stylesheet">
+	
+	<link rel="stylesheet" href="../static/chat.css" />
 <!--    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>-->
 {% endblock %}
 {% block content %}
@@ -13,134 +16,8 @@
 body{
 	background-image: url("{{ url_for('static', path='images/87.jpg') }}");
 	background-size: cover;
-/*	background-color: #f7ffff;*/
     font: 400 normal 14px/18px system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Helvetica','Arial',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol';
 }
-.parent_0 {
-	display: flex;
-	flex-direction: row;
-	text-align: left;
-	
-	
-/*
-	background-color: white;
-	border-radius: 7px;
-	width: 120%;
-	margin-left: -10%;
-	margin-bottom: 70%;
-	-webkit-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
-	-moz-box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
-	box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.57);
-	padding: 2% 10%;
-*/
-}
-.parent_1 {
-	display: flex;
-	flex-direction: row;
-	text-align: left;
-	align-items: center;
-	
-	cursor: pointer;
-	margin: 5px 0px;
-	border: 4px solid #8AAAFF;
-	border-radius: 15px 15px 15px 15px;
-	min-width: 100px;
-	
-	overflow: hidden;
-	text-overflow: ellipsis;
-	
-}
-.parent_2 {
-	display: flex;
-	flex-direction: column;
-	text-align: left;
-	width: 90%;
-	margin-right: 5%;
-	padding: 5px;
-}
-.parent_3 {
-	display: flex;
-	flex-direction: row;
-	text-align: left;
-}
-.label_1 {
-	font-size: 30px;
-	font-weight: bold;
-	font-style: normal;
-	margin: 6% 0 2% 0;
-}		
-.label_2 {
-	font-size: 15px;
-	font-style: normal;
-	font-weight: bold;
-	margin: 2% 0 1% 0;
-}
-h2 {
-  margin:4px;
-/*  font-size: 80%;*/
-  font-weight: 500;
-  line-height: 1;
-}
-p {
-	margin:4px; 
-	color: grey;
-	word-wrap: break-word;
-	transition:  5s ease;
-}
-
-.container_0 {
-	display: flex;
-	flex-direction: column;
-	width: 20%;
-	margin-left: 10%;
-/*	margin-top: 30px;*/
-	
-	height: 80vh;
-	min-height: 600px;
-}
-.clicked {
-	
-	background-color: #9DB7FF;
-	border: 4px solid #4477FF;
-	transition:  0.5s ease;
-	height: 30%;
-/*  color: white;*/
-}
-
-#messageText {
-	width: 30%;
-	border: 2px solid #4477FF;
-	border-radius: 10px;
-	min-height: 30px;
-	max-height: 60px; 
-	resize: vertical;
-}
-button {
-  outline: none;
-  height: 40px;
-  text-align: center;
-  width: 6vw;
-  border-radius: 10px;
-  background: #fff;
-  border: 2px solid #4477FF;
-  color: #4477FF;
-  letter-spacing: 1px;
-  text-shadow: 0;
-  font-size: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  margin-left: 1%;
-}
-button:hover {
-  color: white;
-  background: #4477FF;
-}
-button:active {
-  letter-spacing: 2px;
-}
-
-
 
 </style>
 
@@ -149,130 +26,36 @@ button:active {
 	<div class="container_0" id="conteiner_0"></div>
 	
 	
-	<div style="width: 100%;">
+	<div style="width: 100%;" id="parent_container">
 			<div id="container"></div>	
 
-			<div style="
-			margin-top: 1%;
-			margin-bottom: 5%;
-			display: flex;
-			justify-content: center;">
+<!--
+			<div class="message_container">
 				<p>Message:  </p>
 				<textarea id="messageText"></textarea>
 				<button onClick="sendMessage(event)">Send</button>
 			</div>
+-->
 	</div>
 </div>
 	
 	
 	
     <style>
-        .even {
-            position: relative;
-            background-color: #e7e6ec;
-			color: black;
-			
-            max-width: 40%;
-            padding: 10px;
-			border-radius: 20px;
-			width: fit-content;
-			margin-top: 1%;
-			margin-left: 1%;
-			margin-right: auto;
-			margin-bottom: 0%;
-        }
-        .odd {
-            position: relative;
-            background-color: #1B74FF;
-			color: #F5F4FF;
-/*            border: 2px solid red;*/
-			border-radius: 20px;
-			
-            max-width: 40%;
-            padding: 10px; 
-			width: fit-content;
-			margin-top: 1%;
-			margin-left: auto;
-			margin-right: 1%;
-			margin-bottom: 0%;
-
-        }
-
-        #container {
-			width: 80%;
-			margin-left: 10%;
-            position: relative;
-            border: 2px solid black; 
-			border-radius: 20px;
-			overflow: auto;
-/*			overflow-y: scroll;*/
-			
-			height: 80vh;
-        }
-		#container::-webkit-scrollbar {
-		  width: 12px; /* Ширина полосы прокрутки */
-		}
-
-		 #container::-webkit-scrollbar-thumb {
-		  background-color: #808080; /* Цвет бегунка */
-		  border-radius: 6px; /* Скругление углов бегунка */
-		}
-		
-		.dateBlock_even{
-            position: relative;
-            bottom: 0;
-            font-size: 0.8em;
-            color: #888;
-			margin-left: 1%;
-			margin-right: auto;
-        }		
-		.dateBlock_odd{
-            position: relative;
-            bottom: 0;
-            font-size: 0.8em;
-            color: #888;
-			margin-left: auto;
-			margin-right: 1%;
-			text-align: right;
-        }
+ 
     </style>
 
 
 
 
-<!--
-<div class="flex flex-col items-center">
-    <h1>WebSocket Chat</h1>
-    <h2>Your ID: <span id="ws-id">{{ userdata.id }}</span></h2>
-    <form action="" onsubmit="sendMessage(event)">
-        <p>Message: </p><input class="bg-green-300" type="text" id="messageText" autocomplete="off"/>
-        <button>Send</button>
-    </form>
-    <ul id='messages'>
-</ul>
-</div>
--->
 
 <script>
 
 	
-
-
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 let client_id={{ userdata.id }};
 var user_id_recipient = 1;
 var matchArray = [];
+let first_click = 0;
 	
 function get_approved_matches(){
 	axios.get('/chat/approved_matches/'+client_id, {
@@ -355,6 +138,27 @@ function selet_id(clickedElement, id){
 		messages.data.forEach(msg => {
 			createElements(msg.id_sender, msg.id_recipient, msg.message, msg.send_at)
 		})
+		
+//================================================
+//		Create message div
+		if (first_click == 0) {
+		var parentContainer = document.getElementById('parent_container');
+		var messageContainer = document.createElement('div');
+		messageContainer.className = 'message_container';
+		var paragraphElement = document.createElement('p');
+		paragraphElement.textContent = 'Message: ';
+		var textareaElement = document.createElement('textarea');
+		textareaElement.id = 'messageText';
+		var sendButton = document.createElement('button');
+		sendButton.textContent = 'Send';
+		sendButton.setAttribute('onClick', 'sendMessage(event)');
+
+		messageContainer.appendChild(paragraphElement);
+		messageContainer.appendChild(textareaElement);
+		messageContainer.appendChild(sendButton);
+		parentContainer.appendChild(messageContainer);
+		first_click++;}
+//================================================
 	})
 	.catch(error => {console.error(error);});
 }

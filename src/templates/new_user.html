@@ -14,10 +14,24 @@
     <title>Friends Corner</title>
 </head>
 <body>
-	
+
+<style>
+	body {background-image: url("{{ url_for('static', path='images/register2.jpg') }}");}
+</style>
 	
 
 
+<script>
+function displaySelectedImage(num) {
+    var fileInput = document.getElementById('fileInput'+num);
+    var selectedImage = document.getElementById('selectedImage'+num);
+    if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {selectedImage.src = e.target.result;};
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
+</script>
 <!--
     <div>
         <p id="demo1"> Ничегоо </p>
@@ -190,12 +204,15 @@
 		<label class="label_1">Two of your photos</label>
 <!--		-->
 		<div class="parent_2">
-			<div class="parent_1">
-				
-				<input type="file" name="file1" id="fileInput1" />
-      			<input type="file" name="file2" id="fileInput2" />
-				
+			<div class="parent_1">				
+				<input type="file" name="file1" id="fileInput1" onchange="displaySelectedImage(1)"/>
+				<img id="selectedImage1" style="width: 240px; margin-top: 10px;">				
+			</div>			
+			<div class="parent_1">				
+				<input type="file" name="file1" id="fileInput2" onchange="displaySelectedImage(2)"/>
+				<img id="selectedImage2" style="width: 240px; margin-top: 10px;">				
 			</div>
+			
 		</div>
 <!--		-->
 		<label class="label_1">About Your Friend</label>
@@ -241,7 +258,7 @@
 				
 				<label class="label_2">Email Address *</label>
 				
-				<input type="text" id="email" value="email@gmail.com" placeholder="Enter your email address" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
+				<input type="email" id="email" value="email@gmail.com" placeholder="Enter email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required>
 				
 			</div>			
 			
@@ -249,7 +266,7 @@
 				
 				<label class="label_2">Password *</label>
 				
-				<input type="text" id="password" value="Strongp4ssword"
+				<input type="password" id="password" value="Strongp4ssword"
 pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,20}$"
 				placeholder="Enter password" required>
 			</div>

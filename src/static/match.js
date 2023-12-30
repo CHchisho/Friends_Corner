@@ -1,70 +1,14 @@
-{% extends "base.html" %}
-{% block head %}    
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<!--    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>-->
-	<link href="{{ url_for('static', path='/match.css') }}" rel="stylesheet">
-	
-	<link rel="stylesheet" href="../static/match.css" />
-{% endblock %}
-
-{% block content %}
-
-<body>
-	<style>
-body{
-	background-image: url("{{ url_for('static', path='images/white.jpg') }}");
-	background-size: cover;
-}
-
-</style>
 
 
-<div class="parrent_0"> 
+	var client_id=document.getElementById('userdata_id').innerHTML;
 
-
-	<div id="container">
-
-		<div style="height: 100%; width: 100%; position: absolute; display:flex; justify-content: space-between;">
-			<div class="buttonarrow" onclick="select_image(1)">❮</div>
-			<div class="buttonarrow2" onclick="select_image(2)">❯</div>
-		</div>
-
-		<div id="buttonsContainer">
-			<div id="likeButton" class="button" onclick="send_answer_match(1)">👍</div>
-			<div id="dislikeButton" class="button" onclick="send_answer_match(2)">👎</div>
-		</div>
-	</div>
-
-	<div id="userInfo">
-		<label class="label_1">About Me</label>
-		<p id="name" class="label_2">Name</p>
-
-		<p id="region"></p>
-		<p id="hobbies"></p>
-		<p id="info"></p>
-	</div>	
-
-</div>
-	
-
-	 
-	
-	
-	
-
-
-
-<script>
-	
-	var client_id={{ userdata.id }};
 	var friend_id = 1;
 	
 	var request = 0;
 	let matchArray = [];
+//	var user_id_recipient = 1;
 	
+//	document.getElementById('id').textContent = client_id;
 	
 	function get_new_match(){
 //		clearContainer()
@@ -86,6 +30,19 @@ body{
 	get_new_match();
 
 
+//function submitForm() {
+//	try {
+//		axios.post('/chat/match'+client_id,
+//		{
+//			email: document.getElementById('email').value,
+//			password: document.getElementById('password').value,
+//		}, {headers: { 'Accept': 'application/json' }})
+////		.then(res => {
+////			console.log(res.data);
+////		})
+//		.catch(err => {console.log(err);});
+//	}
+//	catch (error) {console.error(error);}}
 	
 function send_answer_match(answer_) {
 	try {
@@ -96,9 +53,13 @@ function send_answer_match(answer_) {
 			answer: answer_,
 		}, {headers: { 'Accept': 'application/json' }})
 		.then(res => {
-
+//			console.log(res.data);
+			
+			console.log('get answer from post');
+			console.log(request);
+			
 			if (request<4){
-		//		
+		//		1
 				if (request+2 > matchArray.length  && matchArray.length < 5){no_anymore();return;}
 				
 				request++;
@@ -134,7 +95,7 @@ function update_info(id_){
 	document.getElementById('info').textContent = "More about me: " + matchArray[id_].about_you;
 
 	let imagePath = matchArray[id_].id + '_1.jpg';
-	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + imagePath + '")';
+	document.getElementById('container').style.backgroundImage = 'url("{{ url_for("static", path="photos/") }}' + imagePath + '")';
 	}
 	catch (error) {console.error(error);}
 }
@@ -151,14 +112,14 @@ function no_anymore(){
 	document.getElementById('region').textContent = '';
 
 	let imagePath = 'nobody.jpg';
-	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + imagePath + '")';
+	document.getElementById('container').style.backgroundImage = 'url("{{ url_for("static", path="photos/") }}' + imagePath + '")';
 }
 	
 	
 // Переключает фотографии человека
 let image_number=1;
 function select_image() {
-	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + matchArray[request].id + '_'+image_number+'.jpg' + '")';
+	document.getElementById('container').style.backgroundImage = 'url("{{ url_for("static", path="photos/") }}' + matchArray[request].id + '_'+image_number+'.jpg' + '")';
 	image_number = (image_number === 1) ? 2 : 1;
 }
 	
@@ -185,7 +146,7 @@ function select_image() {
 	
 //	function clearContainer() {
 //		var container = document.getElementById('container');
-//		container.innerHTML = '';
+//		container.innerHTML = ''; // Устанавливаем пустую строку в качестве содержимого
 //	}
 	
 //    function appendMessage(msg) {
@@ -195,8 +156,3 @@ function select_image() {
 //        message.appendChild(content)
 //        messages.appendChild(message)
 //    }
-
-
-</script>
-
-{% endblock %}

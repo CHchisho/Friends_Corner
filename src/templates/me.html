@@ -1,67 +1,44 @@
 {% extends "base.html" %}
 {% block head %}    
 	<meta charset="UTF-8">
-<!--    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">-->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<!--    <script type="text/javascript" src="{{ url_for('static', path='test.js') }}"></script>-->
+	<link href="{{ url_for('static', path='/me.css') }}" rel="stylesheet">
+	
+	<link rel="stylesheet" href="../static/me.css" />
 {% endblock %}
 
 {% block content %}
-<div style="  
-display: grid;
-flex-direction: column;
-justify-content: center;
-			text-align: center;
-height: 100%;">
-<!--
-    <div class="flex my-3 gap-5">
-        <input id="operation_search" type="text" placeholder="Тип операции" class="text-xl">
-        <button onclick="searchForOperation()" class="border-2 rounded-3xl bg-gray-300 p-3">Поиск по операциям</button>
-        <input id="numberInput" type="text" placeholder="numberInput" class="text-xl">
-        <button onclick="getid()" class="border-2 rounded-2xl bg-gray-300">Поиск по операциям</button>
+<div class="parrent_0">
+	
+	<img  src="{{ url_for('static', path='photos/' ~ userdata.id ~ '_1.jpg') }}" alt="Your photo" class="mr-5">
+	
+	<div id="userInfo">
+		<label class="label_1">About You</label>
+		<p id="name" class="label_2">{{ userdata.username }}, {{ userdata.age }}, {{ userdata.gender }}</p> 
 
+		<p id="region">I'm from: {{ userdata.regions }}</p>
+		<p id="hobbies">{{ userdata.hobbies }}</p>
 
-        <button onclick="test_log()" class="border-2 rounded-3xl bg-gray-300 p-3">test log</button>
-    </div>
--->
-    <div>
-        <p id="demo1"> Your id:  <span class="text-lg">{{ userdata.id }}</span> </p>
-		
-    </div>
-	
-    <div>
-        <p id="demo1"> Your email:  <span class="text-lg">{{ userdata.email }}</span> </p>
-		
-    </div>
-	
-    <div>
-        <p id="demo1"> Your name:  <span class="text-lg">{{ userdata.username }}</span> </p>
-		
-    </div>
-	
-    <div>
-        <p id="demo1"> Your age:  <span class="text-lg">{{ userdata.age }}</span> </p>
-		
-    </div>
-	<div style="  display: flex;
-  flex-direction: row;
-  height: 100%;">
-	<img width="150" src="{{ url_for('static', path='photos/' ~ userdata.id ~ '_1.jpg') }}" alt="Your photo" class="mr-5">
-	<img width="150" src="{{ url_for('static', path='photos/' ~ userdata.id ~ '_2.jpg') }}" alt="Your photo" class="mr-5">
+		<p id="info">More about me: {{ userdata.about_you }}</p>
+		<p id="email">Your id: {{ userdata.id }}, email: {{ userdata.email }}, phone: {{ userdata.phone_number }}</p>
 	</div>
-
-<!--    <span>Например, Выплата купонов, Удержание НДФЛ по купонам, Вывод денежных средств, Продажа ценных бумаг</span>-->
-<!--    {% for operation in operations %}-->
-<!--        <div class="flex rounded-3 border-2 p-3 mt-5">-->
-<!--            <img width="150" src="{{ url_for('static', path='stocks_1.png') }}" alt="Стонкс" class="mr-5">-->
-<!--            <div class="flex flex-col">-->
-<!--                <span class="text-2xl font-bold">{{ operation.type }}</span>-->
-<!--                <span class="text-lg">{{ operation.date }}</span>-->
-<!--                <span class="text-lg">{{ operation.quantity }}</span>-->
-<!--                <span class="text-lg">{{ operation.figi }}</span>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    {% endfor %}-->
+	
+	<img  src="{{ url_for('static', path='photos/' ~ userdata.id ~ '_2.jpg') }}" alt="Your photo" class="mr-5">
 </div>
+
+
+<script>
+	document.getElementById('hobbies').textContent = 'My hobbies: '+ document.getElementById('hobbies').textContent.split('&').join(', ')
+</script>
+
+<style>
+	body { 
+		background-image: url("{{ url_for('static', path='images/blue1.jpg') }}");
+		background-size: cover;
+		padding-top: 100px;
+	}
+</style>
+
 {% endblock %}

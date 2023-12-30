@@ -41,7 +41,16 @@ current_user = fastapi_users.current_user()
 
 @router.get("/me")
 def get_search_page(request: Request, user: User = Depends(current_user)):
-    return templates.TemplateResponse("me.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
+    return templates.TemplateResponse("me.html", {"request": request,
+            "userdata": {"id": user.id,
+                         "email": user.email,
+                         "age": user.your_age,
+                         "username": user.username,
+                         "gender": user.gender,
+                         "about_you": user.about_you,
+                         "hobbies": user.hobbies,
+                         "regions": user.regions,
+                         "phone_number": user.phone_number,}})
 
 @router.get("/chat")
 def get_chat_page(request: Request, user: User = Depends(current_user)):
@@ -51,5 +60,9 @@ def get_chat_page(request: Request, user: User = Depends(current_user)):
 
 @router.get("/match")
 def get_chat_page(request: Request, user: User = Depends(current_user)):
-    return templates.TemplateResponse("match.html", {"request": request, "userdata": {"id":user.id, "email":user.email, "age":user.your_age,"username":user.username}})
+    return templates.TemplateResponse("match.html", {"request": request,
+            "userdata": {"id": user.id,
+                         "email": user.email,
+                         "age": user.your_age,
+                         "username": user.username}})
 
