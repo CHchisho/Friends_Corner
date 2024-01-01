@@ -3,11 +3,11 @@ services:
   db:
     image: postgres:15
     container_name: db_app
-    command: -p 1221
+    command: -p 5432
     expose:
-      - 1221
+      - 5432
     env_file:
-      - .env-non-dev
+      - .env
 
   redis:
     image: redis:7
@@ -20,34 +20,10 @@ services:
     build:
       context: .
     env_file:
-      - .env-non-dev
+      - .env
     container_name: fastapi_app
-    command: ["/fastapi_app/docker/app.sh"]
     ports:
       - 9999:8000
     depends_on:
       - db
       - redis
-
-  celery:
-    build:
-      context: .
-    env_file:
-      - .env-non-dev
-    container_name: celery_app
-    command: ["/fastapi_app/docker/celery.sh", "celery"]
-    depends_on:
-      - redis
-
-  flower:
-    build:
-      context: .
-    env_file:
-      - .env-non-dev
-    container_name: flower_app
-    command: ["/fastapi_app/docker/celery.sh", "flower"]
-    depends_on:
-      - redis
-      - celery
-    ports:
-      - 8888:5555
