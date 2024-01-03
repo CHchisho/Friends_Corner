@@ -3,9 +3,7 @@
 pip install -r requirements.txt
 
 alembic upgrade head
-cd
-echo %cd%
+
 cd src
-echo %cd%
-cd
-#gunicorn main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000
+
+gunicorn main:app --workers 1 --worker-class uvicorn.workers.UvicornWorker --bind=0.0.0.0:8000
