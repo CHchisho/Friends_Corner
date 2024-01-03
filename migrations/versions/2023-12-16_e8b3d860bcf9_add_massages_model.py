@@ -23,8 +23,9 @@ def upgrade() -> None:
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('id_recipient', sa.Integer(), nullable=True),
-    sa.Column('send_at', sa.TIMESTAMP(), nullable=True),
+    sa.Column('send_at', sa.String(), nullable=True),
     sa.Column('message', sa.String(), nullable=True),
+    sa.Column('id_sender', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.alter_column('user', 'friend_age_from',

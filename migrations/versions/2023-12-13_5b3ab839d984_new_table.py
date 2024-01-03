@@ -13,7 +13,7 @@ from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
 revision: str = '5b3ab839d984'
-down_revision: Union[str, None] = '9208973eb304'
+down_revision: Union[str, None] = '04bfcb2f8f4b'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
@@ -36,6 +36,7 @@ def upgrade() -> None:
     sa.Column('hobbies', sa.String(), nullable=True),
     sa.Column('friend_gender', sa.String(), nullable=False),
     sa.Column('friend_age', sa.Integer(), nullable=False),
+    sa.Column('about_you', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
@@ -53,10 +54,4 @@ def downgrade() -> None:
     op.drop_column('user', 'regions')
     op.drop_column('user', 'gender')
     op.drop_column('user', 'phone_number')
-    op.create_table('role',
-    sa.Column('id', sa.INTEGER(), autoincrement=True, nullable=False),
-    sa.Column('name', sa.VARCHAR(), autoincrement=False, nullable=False),
-    sa.Column('permissions', postgresql.JSON(astext_type=sa.Text()), autoincrement=False, nullable=True),
-    sa.PrimaryKeyConstraint('id', name='role_pkey')
-    )
     # ### end Alembic commands ###
