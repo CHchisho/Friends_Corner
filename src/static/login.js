@@ -44,7 +44,6 @@ try {
 		window.open(fullURL, '_blank');
 	})
 	.catch(error => {console.error(error);});
-	alert('Login failed!');
 	
 }
 catch (error) {console.error(error);}

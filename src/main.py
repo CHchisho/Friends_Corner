@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, File, Request
+from fastapi import FastAPI, UploadFile, File, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from auth.base_config import auth_backend, fastapi_users
@@ -7,6 +7,12 @@ from auth.schemas import UserRead, UserCreate
 from fastapi_cache import FastAPICache
 from fastapi_cache.backends.redis import RedisBackend
 from fastapi_cache.decorator import cache
+
+from auth.models import User
+from sqlalchemy import insert, select, asc, or_, func
+from sqlalchemy.ext.asyncio import AsyncSession
+from database import async_session_maker, get_async_session
+
 
 from auth.utils import convert_to_jpeg
 from tasks.router import router as router_tasks
@@ -70,16 +76,23 @@ app.add_middleware(
 #     finally:
 #         return {"status": 201}
 @app.post("/auth/photos")
-async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(...)):
+async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(...),session: AsyncSession = Depends(get_async_session)):
+
+    query = select(User.id).order_by(User.id.desc()).limit(1)
+    last_id = await session.execute(query)
+    last_id = last_id.first()[0]
     try:
         file1_data = convert_to_jpeg(file1.file.read())
         file2_data = convert_to_jpeg(file2.file.read())
 
-        with open("static/photos/new_photo_1.jpg", "wb") as f1:
+        with open(f"static/photos/{last_id+1}_1.jpg", "wb") as f1:
             f1.write(file1_data)
-        with open("static/photos/new_photo_2.jpg", "wb") as f2:
+        with open(f"static/photos/{last_id+1}_2.jpg", "wb") as f2:
             f2.write(file2_data)
+
+        print("created photos: ", last_id+1)
     finally:
+        print({"status": 201})
         return {"status": 201}
 
 @app.get("/")
