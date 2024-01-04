@@ -39,29 +39,22 @@ try {
 	.then(response => {
 //		console.log(response.data);
 		alert('Login!');
-		var relativePath = 'pages/me';
 		var baseURL = window.location.origin;
-		var fullURL = baseURL + '/' + relativePath;
+		var fullURL = baseURL + '/pages/me'
 		window.open(fullURL, '_blank');
 	})
 	.catch(error => {console.error(error);});
+	alert('Login failed!');
 	
-
-
-
 }
 catch (error) {console.error(error);}
 }
 
 
 
-
-
 function logout() {
 try {
-const headers = {
-  'Accept': 'application/json'
-};
+const headers = {'Accept': 'application/json'};
 
 axios.post('/auth/logout', null, { headers })
   .then(response => {
