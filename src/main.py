@@ -57,6 +57,18 @@ app.add_middleware(
 
 
 
+# @app.post("/auth/photos")
+# async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(...)):
+#     try:
+#         file1_data = convert_to_jpeg(file1.file.read())
+#         file2_data = convert_to_jpeg(file2.file.read())
+#
+#         with open("static/photos/new_photo_1.jpg", "wb") as f1:
+#             f1.write(file1_data)
+#         with open("static/photos/new_photo_2.jpg", "wb") as f2:
+#             f2.write(file2_data)
+#     finally:
+#         return {"status": 201}
 @app.post("/auth/photos")
 async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(...)):
     try:
@@ -69,7 +81,6 @@ async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(.
             f2.write(file2_data)
     finally:
         return {"status": 201}
-
 
 @app.get("/")
 def first_page(request: Request):

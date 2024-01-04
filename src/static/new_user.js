@@ -1,10 +1,11 @@
 
 
+var hobbies_ = [];
 function submitForm() {
 	console.log(document.getElementById('about_you').value);
 	const checks = document.querySelectorAll('input[name="hobby"]');
-	let hobbies = [];
-	checks.forEach(el => {if (el.checked) {hobbies.push(el.value);}});
+	hobbies_ = [];
+	checks.forEach(el => {if (el.checked) {hobbies_.push(el.value);}});
 	
 	
 	try { 
@@ -46,7 +47,7 @@ function finish_reg () {
 			gender: document.querySelector('input[name="gender_you"]:checked').value,
 			regions: document.getElementById('regions').value,
 			your_age: document.getElementById('your_age').value,
-			hobbies: hobbies.join('&'),
+			hobbies: hobbies_.join('&'),
 			about_you: document.getElementById('about_you').value,
 			friend_gender: document.querySelector('input[name="gender_friend"]:checked').value,
 			friend_age_from: document.getElementById('friend_age_from').value,
@@ -54,18 +55,18 @@ function finish_reg () {
 		}
 		)
 		.then(res => {
-//			alert("Success!");
+			alert("Success!");
+			var relativePath = '/pages/login';
+			var baseURL = window.location.origin;
+			var fullURL = baseURL + relativePath;
+			window.open(fullURL, '_blank');	
 		})
 		.catch(err => {
-		console.log(err);
+		console.log(err);alert('err1');alert(err);
 		});
 	}
-	catch (error) {console.error(error);}
+	catch (error) {console.error(error);alert('err2');alert(error);}
 	
-	var relativePath = '/pages/login';
-	var baseURL = window.location.origin;
-	var fullURL = baseURL + relativePath;
-	window.open(fullURL, '_blank');	
 }
 
 function checkCheckboxes() {
