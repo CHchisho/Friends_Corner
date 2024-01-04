@@ -9,7 +9,6 @@ from fastapi_cache.backends.redis import RedisBackend
 from fastapi_cache.decorator import cache
 
 from auth.utils import convert_to_jpeg
-from operations.router import router as router_operation
 from tasks.router import router as router_tasks
 from pages.router import router as router_pages
 from chat.router import router as router_chat
@@ -39,7 +38,6 @@ app.include_router(
     tags=["Auth"],
 )
 
-app.include_router(router_operation)
 app.include_router(router_tasks)
 app.include_router(router_pages)
 app.include_router(router_chat)
@@ -61,16 +59,16 @@ app.add_middleware(
 
 @app.post("/auth/photos")
 async def upload_files(file1: UploadFile = File(...), file2: UploadFile = File(...)):
+    try:
+        file1_data = convert_to_jpeg(file1.file.read())
+        file2_data = convert_to_jpeg(file2.file.read())
 
-    file1_data = convert_to_jpeg(file1.file.read())
-    file2_data = convert_to_jpeg(file2.file.read())
-
-    with open("static/photos/new_photo_1.jpg", "wb") as f1:
-        f1.write(file1_data)
-    with open("static/photos/new_photo_2.jpg", "wb") as f2:
-        f2.write(file2_data)
-
-    return {"status": 201}
+        with open("static/photos/new_photo_1.jpg", "wb") as f1:
+            f1.write(file1_data)
+        with open("static/photos/new_photo_2.jpg", "wb") as f2:
+            f2.write(file2_data)
+    finally:
+        return {"status": 201}
 
 
 @app.get("/")

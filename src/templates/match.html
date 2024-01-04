@@ -15,7 +15,7 @@
 <body>
 	<style>
 body{
-	background-image: url("{{ url_for('static', path='images/white.jpg') }}");
+	background-image: url("{{ url_for('static', path='images/login2.jpg') }}");
 	background-size: cover;
 }
 
@@ -161,40 +161,6 @@ function select_image() {
 	document.getElementById('container').style.backgroundImage = 'url("{{ url_for('static', path='photos/') }}' + matchArray[request].id + '_'+image_number+'.jpg' + '")';
 	image_number = (image_number === 1) ? 2 : 1;
 }
-	
-//function createElements(sender, recipient, msg, date) {
-//	var container = document.getElementById('container');
-//	var messageDiv = document.createElement('div');
-//	var dateBlock = document.createElement('div');
-//	dateBlock.textContent = date;
-//
-//	var p = document.createElement('p');
-//	if (sender==client_id) {
-//		p.innerHTML = msg;
-//		p.classList.add('odd');
-//		dateBlock.classList.add('dateBlock_odd');
-//	} else {
-//		p.textContent = msg;
-//		p.classList.add('even');
-//		dateBlock.classList.add('dateBlock_even');
-//	}
-//	messageDiv.appendChild(p);
-//	messageDiv.appendChild(dateBlock);
-//	container.appendChild(messageDiv);
-//}
-	
-//	function clearContainer() {
-//		var container = document.getElementById('container');
-//		container.innerHTML = '';
-//	}
-	
-//    function appendMessage(msg) {
-//        let messages = document.getElementById('messages')
-//        let message = document.createElement('li')
-//        let content = document.createTextNode(msg)
-//        message.appendChild(content)
-//        messages.appendChild(message)
-//    }
 
 
 </script>

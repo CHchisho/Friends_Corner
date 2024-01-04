@@ -44,7 +44,7 @@ body {
 .login::after {
   left: -45%;
   bottom: -125%;
-  background-color: rgb(154, 202, 255, 0.4);
+  background-color: rgb(200, 240, 255, 0.8);
   -webkit-animation: wawes 17s infinite;
   -moz-animation: wawes 17s infinite;
   animation: wawes 17s infinite;

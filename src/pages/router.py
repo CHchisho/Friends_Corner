@@ -1,7 +1,6 @@
 from fastapi import APIRouter, Request, Depends
 from fastapi.templating import Jinja2Templates
 from auth.base_config import auth_backend, fastapi_users
-from operations.router import get_specific_operations
 from auth.models import User
 
 from pydantic import BaseModel
