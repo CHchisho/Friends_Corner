@@ -17,16 +17,16 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
     async def on_after_register(self, user: User, request: Optional[Request] = None):
         print(f"User {user.id} has registered.")
 
-        start_time = time.time()
-        while True:
-            try:
-                os.rename("static/photos/new_photo_1.jpg", f"static/photos/{user.id}_1.jpg")
-                os.rename("static/photos/new_photo_2.jpg", f"static/photos/{user.id}_2.jpg")
-                break
-            except FileNotFoundError as e: print(e)
-            if time.time() - start_time > 2:
-                print("Timeout: Command execution took too long.")
-                break
+        # start_time = time.time()
+        # while True:
+        #     try:
+        #         os.rename("static/photos/new_photo_1.jpg", f"static/photos/{user.id}_1.jpg")
+        #         os.rename("static/photos/new_photo_2.jpg", f"static/photos/{user.id}_2.jpg")
+        #         break
+        #     except FileNotFoundError as e: print(e)
+        #     if time.time() - start_time > 2:
+        #         print("Timeout: Command execution took too long.")
+        #         break
 
 
     async def create(

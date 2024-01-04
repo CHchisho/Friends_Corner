@@ -2,7 +2,7 @@
 
 var hobbies_ = [];
 function submitForm() {
-	console.log(document.getElementById('about_you').value);
+//	console.log(document.getElementById('about_you').value);
 	const checks = document.querySelectorAll('input[name="hobby"]');
 	hobbies_ = [];
 	checks.forEach(el => {if (el.checked) {hobbies_.push(el.value);}});
