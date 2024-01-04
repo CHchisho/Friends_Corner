@@ -36,19 +36,19 @@ try {
 	data.append('client_secret', '');
 
 	axios.post('/auth/login', data, { headers })
-	//  .then(response => {
-	//    console.log(response.data);
-	//  })
-	  .catch(error => {
-		console.error(error);
-	  });
-	alert('Login!');
+	.then(response => {
+//		console.log(response.data);
+		alert('Login!');
+		var relativePath = 'pages/me';
+		var baseURL = window.location.origin;
+		var fullURL = baseURL + '/' + relativePath;
+		window.open(fullURL, '_blank');
+	})
+	.catch(error => {console.error(error);});
+	
 
 
-	var relativePath = 'pages/me';
-	var baseURL = window.location.origin;
-	var fullURL = baseURL + '/' + relativePath;
-	window.open(fullURL, '_blank');
+
 }
 catch (error) {console.error(error);}
 }

@@ -24,7 +24,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
                 os.rename("static/photos/new_photo_2.jpg", f"static/photos/{user.id}_2.jpg")
                 break
             except FileNotFoundError as e: print(e)
-            if time.time() - start_time > 5:
+            if time.time() - start_time > 2:
                 print("Timeout: Command execution took too long.")
                 break
 

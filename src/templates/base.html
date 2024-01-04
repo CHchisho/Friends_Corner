@@ -14,38 +14,34 @@
 <style>
 	body{margin-top: 5%;}
        
-		.navbar {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			background-color: #333;
-			padding: 0 20px;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-			z-index: 1000;
-			display: flex;
-			flex-direction: row;
+	.navbar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		background-color: #333;
+		padding: 0 20px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+		z-index: 1000;
+		display: flex;
+		flex-direction: row;
 
-			justify-content: center;
-			align-items: center;
-			justify-content: space-between;
-			flex-wrap: wrap;
-        }
-
-        /* Стили для ссылок в панели навигации */
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.7em;
-			transition: all 0.5s ease;
-			cursor: pointer;
-        }
-
-        /* Стиль для активной ссылки */
-        .navbar a:hover {
-            color: #8bdbf5; /* Цвет для активной ссылки */
-        }
+		justify-content: center;
+		align-items: center;
+		justify-content: space-between;
+		flex-wrap: wrap;
+	}
+	.navbar a {
+		color: white;
+		text-decoration: none;
+		margin: 0 15px;
+		font-size: 1.7em;
+		transition: all 0.5s ease;
+		cursor: pointer;
+	}
+	.navbar a:hover {
+		color: #8bdbf5; 
+	}
 	
 	
 	@media (max-width: 600px) {
@@ -72,10 +68,16 @@
 function logout() {
 	try {
 	axios.post('/auth/logout', null, { 'Accept': 'application/json'})
-	  .catch(error => {
+	.then(res => {
+		alert('Logout!');
+		var baseURL = window.location.origin;
+		var fullURL = baseURL + '/';
+		window.open(fullURL, '_blank');
+	})
+	.catch(error => {
 		console.error(error);
-	  });
-	alert('Logout!');
+	});
+	
 	}
 	catch (error) {console.error(error);}
 }

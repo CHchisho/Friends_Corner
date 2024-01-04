@@ -20,7 +20,7 @@ function submitForm() {
 
 		axios.post('/auth/photos', formData)
 		.then(response => {
-			console.log('Success:', response.data);
+			finish_reg();
 		})
 		.catch(error => {
 			console.error('Error:', error);
@@ -29,7 +29,10 @@ function submitForm() {
 		}
 	catch (error) {console.error(error);}
 	
-	
+}
+
+
+function finish_reg () {
 	try {
 		axios.post('/auth/register', 
 		{
@@ -51,7 +54,7 @@ function submitForm() {
 		}
 		)
 		.then(res => {
-			alert("Success!");
+//			alert("Success!");
 		})
 		.catch(err => {
 		console.log(err);
@@ -62,9 +65,8 @@ function submitForm() {
 	var relativePath = '/pages/login';
 	var baseURL = window.location.origin;
 	var fullURL = baseURL + relativePath;
-	window.open(fullURL, '_blank');
+	window.open(fullURL, '_blank');	
 }
-
 
 function checkCheckboxes() {
       var checkboxes = document.getElementsByName("hobby");
