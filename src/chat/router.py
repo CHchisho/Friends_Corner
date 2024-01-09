@@ -138,10 +138,10 @@ async def get_last_messages(
     messages_list2 = [msg[0].as_dict() for msg in messages2.all()]
     messages_list.extend(messages_list2)
 
-    def convert_to_datetime(item):
-        # return datetime.strptime(item['send_at'], '%m.%d.%Y, %H:%M:%S')
-        return item['id']
-    sorted_data = sorted(messages_list, key=convert_to_datetime)
+    # def convert_to_datetime(item):
+    #     # return datetime.strptime(item['send_at'], '%m.%d.%Y, %H:%M:%S')
+    #     return item['id']
+    sorted_data = sorted(messages_list, key=lambda x: x["send_at"])
     # print(sorted_data[-20:])
     return sorted_data[-20:]
     # return messages.scalars().all()
@@ -174,7 +174,6 @@ async def ws_chat(mesg: Mesg):
         now = datetime.now()
         async with async_session_maker() as session:
             stmt = insert(Messages).values(
-
                 id_sender=mesg.id_sender,
                 id_recipient=mesg.id_recipient,
                 message=mesg.message,
@@ -186,7 +185,6 @@ async def ws_chat(mesg: Mesg):
         return {'status': 201, 'data': {'id_sender': mesg.id_sender,
                                         'id_recipient': mesg.id_recipient,
                                         'message': mesg.message}}
-
 
 
 @router.get("/match/{client_id}")
@@ -245,8 +243,6 @@ class Answer(BaseModel):
     answer: int
 @router.post("/match")
 async def post_match(answer: Answer):
-    # print(answer)
-
     try:
         async with async_session_maker() as session:
             stmt = insert(Match).values(
