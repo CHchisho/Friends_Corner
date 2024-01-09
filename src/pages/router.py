@@ -58,7 +58,7 @@ def get_chat_page(request: Request, user: User = Depends(current_user)):
 
 
 @router.get("/match")
-def get_chat_page(request: Request, user: User = Depends(current_user)):
+def get_match_page(request: Request, user: User = Depends(current_user)):
     return templates.TemplateResponse("match.html", {"request": request,
             "userdata": {"id": user.id,
                          "email": user.email,

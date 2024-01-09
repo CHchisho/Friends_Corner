@@ -193,7 +193,7 @@ function clearContainer() {
 	
 	
 // WebSocket
-let ws = new WebSocket(`ws://localhost:8000/chat/ws/${client_id}`);
+let ws = new WebSocket(`ws://friends-corner-5chi.onrender.com:8000/chat/ws/${client_id}`);
 ws.onmessage = function (event) {
 
 	data = JSON.parse(event.data.replace(/'/g, '"'));

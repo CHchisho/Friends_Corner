@@ -1,4 +1,4 @@
-/src/static/photos/*.jpg
+
 /.idea/
 /.pytest_cache/
 /tests/

@@ -24,6 +24,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import RedirectResponse
 from fastapi.templating import Jinja2Templates
 from starlette.exceptions import HTTPException as StarletteHTTPException
+import asyncio
 
 app = FastAPI(
     title="Trading App"
@@ -107,6 +108,7 @@ def first_page(request: Request):
 async def startup():
     redis = aioredis.from_url("redis://localhost")
     FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
+    # asyncio.create_task(user_data_reset())
 
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request, exc):
