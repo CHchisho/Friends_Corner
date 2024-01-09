@@ -164,7 +164,28 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int ):
         # await manager.broadcast(f"Client #{client_id} left the chat")
 
 
+class Mesg(BaseModel):
+    id_sender: int
+    id_recipient: int
+    message: str
+@router.post("/ws_chat")
+async def ws_chat(mesg: Mesg):
+    try:
+        now = datetime.now()
+        async with async_session_maker() as session:
+            stmt = insert(Messages).values(
 
+                id_sender=mesg.id_sender,
+                id_recipient=mesg.id_recipient,
+                message=mesg.message,
+                send_at=now.strftime("%Y.%m.%d, %H:%M:%S")
+            )
+            await session.execute(stmt)
+            await session.commit()
+    finally:
+        return {'status': 201, 'data': {'id_sender': mesg.id_sender,
+                                        'id_recipient': mesg.id_recipient,
+                                        'message': mesg.message}}
 
 
 
@@ -255,7 +276,6 @@ async def all_data_from_database_for_admin(session: AsyncSession = Depends(get_a
     user_data_list3 = [msg[0].as_dict() for msg in user_data3.all()]
     return [user_data_list,user_data_list2,user_data_list3]
 
-
 @router.get("/create_test_user_for_admin")
 async def create_test_user_for_admin():
     async with async_session_maker() as session:
@@ -273,6 +293,7 @@ async def create_test_user_for_admin():
         await session.execute(stmt3)
         await session.commit()
     print("Test user data created!")
+    return {"status": 200}
 
 @router.get("/delete_test_user_for_admin")
 async def delete_test_user_for_admin():
@@ -296,7 +317,7 @@ async def delete_test_user_for_admin():
         await session.commit()
 
     print("Test user data was deleted")
-
+    return {"status": 200}
 
 scheduler = AsyncIOScheduler()
 async def job():

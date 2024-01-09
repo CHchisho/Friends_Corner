@@ -193,27 +193,56 @@ function clearContainer() {
 	
 	
 // WebSocket
-let ws = new WebSocket(`wss://friends-corner-5chi.onrender.com:8000/chat/ws/${client_id}`);
-ws.onopen = function(event) {
-    console.log('WebSocket connection opened:', event);
-};
-ws.onerror = function(event) {
-    console.error('WebSocket error:', event);
-};
+//let ws = new WebSocket(`wss://friends-corner-5chi.onrender.com:8000/chat/ws/${client_id}`);
+//ws.onopen = function(event) {
+//    console.log('WebSocket connection opened:', event);
+//};
+//ws.onerror = function(event) {
+//    console.error('WebSocket error:', event);
+//};
+//let ws = new WebSocket(`ws://localhost:8000/chat/ws/${client_id}`);
+//
+//ws.onmessage = function (event) {
+//
+//	data = JSON.parse(event.data.replace(/'/g, '"'));
+//	let currentDate = new Date();
+//	createElements(data.id_sender, data.id_recipient, data.message, currentDate.toLocaleString())
+//};
+//
+//function sendMessage(event) {
+//	let message = document.getElementById("messageText");
+//
+//	ws.send(`${user_id_recipient}%%@%%${message.value}`);
+//
+//	message.value = '';
+//	event.preventDefault();
+//}
 
-ws.onmessage = function (event) {
-
-	data = JSON.parse(event.data.replace(/'/g, '"'));
-	let currentDate = new Date();
-	createElements(data.id_sender, data.id_recipient, data.message, currentDate.toLocaleString())
-};
-
+//			id_sender: client_id,
+//			id_recipient: user_id_recipient,
+//			message: message_,
 function sendMessage(event) {
-	let message = document.getElementById("messageText");
+	let message_ = document.getElementById("messageText");
 
-	ws.send(`${user_id_recipient}%%@%%${message.value}`);
+	try {
+		axios.post('/chat/ws_chat/',
+		{
+			id_sender: client_id,
+			id_recipient: user_id_recipient,
+			message: message_.value,
+		}, {headers: { 'Accept': 'application/json' }})
+		.then(res => {
+			let resArray = [];
+			let currentDate = new Date();
+			resArray = res.data.data;
+//			console.log(resArray);
+			createElements(resArray.id_sender, resArray.id_recipient, resArray.message, currentDate.toLocaleString());
+		})
+		.catch(err => {console.log(err);});
+	}
+	catch (error) {console.error(error);}	
 
-	message.value = '';
+	message_.value = '';
 	event.preventDefault();
 }
 
