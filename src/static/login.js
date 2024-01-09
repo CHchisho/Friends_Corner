@@ -49,9 +49,6 @@ try {
 catch (error) {console.error(error);alert("Is there something wrong. Try reloading the page or open .../pages/me");
 }
 
-var baseURL = window.location.origin;
-var fullURL = baseURL + '/pages/me'
-window.open(fullURL, '_blank');
 }
 
 
