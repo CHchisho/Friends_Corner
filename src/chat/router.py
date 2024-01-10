@@ -263,11 +263,11 @@ async def all_data_from_database_for_admin(session: AsyncSession = Depends(get_a
     user_data = await session.execute(query)
     user_data_list = [msg[0].as_dict() for msg in user_data.all()]
 
-    query2 = select(User)
+    query2 = select(Match)
     user_data2 = await session.execute(query2)
     user_data_list2 = [msg[0].as_dict() for msg in user_data2.all()]
 
-    query3 = select(User)
+    query3 = select(Messages)
     user_data3 = await session.execute(query3)
     user_data_list3 = [msg[0].as_dict() for msg in user_data3.all()]
     return [user_data_list,user_data_list2,user_data_list3]
