@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            margin-top: 100px;
+            font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+			overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: #747678;
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.3);
+            -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.3);
+            box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.3);
+        }
+        .navbar_top {
+            
+            background-color: #747678;
+            overflow: hidden;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .navbar_top a {
+            color: white;
+            margin: 0 10px;
+            
+            font-weight: 600;
+            word-wrap: break-word;
+            font-size: 13px;
+            transition: all 0.4s ease-in-out;
+            
+            text-decoration: none;
+        }
+        .navbar_top a:hover {
+            color: #e4e4e4;
+        }
+
+        .navbar_bottom {
+            
+            background-color: #747678;
+            overflow: hidden;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .navbar_bottom a {
+            
+            color: #747678;
+            margin: 0 15px;
+            
+            font-weight: 600;
+            word-wrap: break-word;
+            font-size: 18px;
+            transition: all 0.4s ease-in-out;
+            
+            text-decoration: none;
+        }
+        .navbar_bottom a:hover {
+            color: #cfcfcf;
+        }
+		.arrow {
+			transform: rotate(90deg);
+/*			transform-origin: left bottom; */
+			white-space: nowrap;
+			display: inline-block;
+			padding: 1px 0px 5px 0px;
+		}
+        
+        .submenu {
+            visibility: hidden;
+            opacity: 0;
+            background: #FFFFFF;
+            transition: all 0.4s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            margin: 10px 0;
+            padding: 10px 0;
+            border-top: 4px solid #FFD457;
+        }
+        .topmenu:hover .submenu {
+        visibility: visible;
+        opacity: 1;
+        background: #fff;
+        }
+        .submenu a {
+            margin: 9px 20px;
+        }
+
+        .logo {
+            float: left;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        .content {
+            
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .content h1 {
+            color: #ffb612;
+            font-size: 40px;
+            margin: 30px 0 20px;    
+        }
+        .content div {
+            width: 70%;
+            text-align: left; 
+            align-items: left;
+        }
+        .content p {
+            color: #3d3d3d;
+            margin: 0px 0;            
+            font-size: 20px;
+            word-wrap: break-word;
+        }
+
+
+        .end_text_top {
+            background-color: #222222!important;
+            width: 100%;
+            font-size: 20px;
+        }
+        .end_text_top_1 {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto; 
+            margin-top: 20px;
+            padding: 30px 0;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .end_text_top_1 a {
+            color:aliceblue;
+            margin: 5px;
+            text-decoration: none;
+        }
+        .end_text_bottom {
+            width: 100%;
+            font-size: 25px;
+			padding: 10px 0px;
+            background-color: rgb(0, 0, 0);
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center; 
+			word-wrap: break-word;
+        }
+		.end_text_bottom p {
+			margin: 0;
+		}
+        .row {
+            display: flex;
+            flex-direction: row;
+            width: 50%;
+            justify-content: space-around;
+        }
+    </style>
+	<style>
+    @media (max-width: 1400px) {
+        .topmenu {display: none !important;}
+    }
+	@media (max-width: 767px) {
+		.end_text_top_1 { flex-direction: column; }
+		.end_text_top_1 div { margin: 10px 0; }
+		.end_text_bottom p { font-size: 15px;}
+		
+		.content div,.content img { width: 90%;}
+        .nav_links { display: none !important; }
+        .nav_links_mobile{display: flex !important;}
+        .table_component th:first-child,
+        .table_component td:first-child {
+            text-align: start !important;
+            vertical-align: top;
+            padding-top: 20px;
+        }
+        .row {
+            display: flex;
+            flex-direction: row;
+            width: auto;
+            justify-content: flex-start;
+        }
+	}
+	</style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="navbar_top">
+            <div style=" margin: 7px 0 7px auto; text-align: right;">
+                <a href="#tilaa-uutiskirje">Tilaa uutiskirje</a>
+                <a target="_blank" rel="noopener" href="https://www.luksia.fi/anna-palautetta/">Anna palautetta</a>
+            </div>
+        </div>
+
+
+        <div style="background-color: white;">
+            <div class="navbar_bottom" style="height: 50px; background-color: rgb(255, 255, 255);">
+                <a href="https://www.luksia.fi/">
+                    <img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_harmaa.png" alt="luksia.fi" width="150px">
+                </a>
+
+
+
+
+                <div class="nav_links_mobile" style="display: none;flex-direction: column;align-items: center;">
+					
+					<a href="https://www.luksia.fi/" style="margin-left: auto; margin-right: 0; position: relative;">Etusivu</a>
+					
+                </div>
+
+
+
+
+                <div class="nav_links" style="display: flex;flex-direction: row;align-items: center">
+					
+					<a href="https://www.luksia.fi/">Etusivu</a>
+					
+					<div class="topmenu">
+                    	<a href="https://www.luksia.fi/koulutus/">Koulutus <span class="arrow">❯</span></a>
+						<div class="submenu">
+							<a href="https://www.luksia.fi/koulutus/yhteishaku/">Yhteishaku</a>
+							<a href="https://www.luksia.fi/koulutus/jatkuva-haku/">Jatkuva haku</a>
+							<a href="https://www.luksia.fi/koulutus/tyovoimakoulutus/">Työvoimakoulutus<br>Valmennukset</a>
+							<a href="https://www.luksia.fi/project/lyhytkoulutukset/">Lyhytkoulutukset</a>
+						</div>
+					</div>
+					
+					<div class="topmenu">
+                    	<a href="https://www.luksia.fi/palvelut/">Palvelut <span class="arrow">❯</span></a>
+						<div class="submenu">
+							<a href="https://www.luksia.fi/palvelut/palvelut-yrityksille/">Palvelut yrityksille</a>
+							<a href="https://www.luksia.fi/palvelut/palvelut-yksityisille/">Palvelut yksityisille</a>
+							<a target="_blank" rel="noopener" href="https://lukstore.fi">LukStore</a>
+							<a href="https://www.luksia.fi/palvelut/palvelut-yksityisille/ajanvaraus/">Varaa aika</a>
+						</div>
+					</div>
+					
+                    <a href="https://www.luksia.fi/tutkimus-ja-kehitys/">Tutkimus ja kehitys</a>
+					
+					<div class="topmenu">
+                    	<a href="https://www.luksia.fi/luksia/">Luksia <span class="arrow">❯</span></a>
+						<div class="submenu">
+							<a href="https://www.luksia.fi/luksia/avoimet-tyopaikat/">Avoimet työpaikat</a>
+						</div>
+					</div>
+					
+                    <a href="https://www.luksia.fi/yhteystiedot/">Yhteystiedot</a>
+                    <a href="https://www.luksia.fi/ajankohtaista/">Ajankohtaista</a>
+                </div>
+
+
+
+
+                
+				
+            </div>
+        </div>
+<style>
+</style>
+    </div>
+	
+	
+    <div class="content">
+
+        <img  src="{{ url_for('static', path='images/yrittajan_polku_.png') }}" alt="luksia.fi" width="70%">
+        <div >
+            <h1>Yrittäjän polku</h1>
+        </div>
+        <div >
+            <p style="margin: 0px;">
+Huhtikuussa 17.4.2024 järjestetään Yrittäjän polku -sinun polkusi tapahtuma Harjun luentosalissa, yhteistyössä Lohjan Yrittäjien kanssa. 
+<br><br>
+Päivä sisältää viisi inspiroivaa yrittäjätarinaa, jotka jaetaan paikan päällä Harjun koulun luentosalissa ja striimataan samanaikaisesti Lohjan lukiolaisille.
+Tapahtuma on osa yhteistä teemapäivää Lohjan lukion kanssa, tarjoten arvokasta tietoa ja inspiraatiota nuorille yrittäjyydestä kiinnostuneille.  
+<br><br>
+Älä jää paitsi mahdollisuudesta oppia ja verkostoitua - tervetuloa Yrittäjän polulle!</p>
+        </div>
+		
+		
+		
+		<div >
+            <h1>Aikataulu</h1>
+        </div>
+        
+        <style>
+            .table_component {
+                overflow: hidden;
+                width: 100%;
+            }
+            
+            .table_component table {
+                border: 1px solid #dededf;
+                height: 100%;
+                width: 100%;
+                table-layout: auto;
+                border-collapse: collapse;
+                border-spacing: 1px;
+                text-align: left;
+            }
+            
+            .table_component caption {
+                caption-side: top;
+                text-align: left;
+            }
+            
+            .table_component th {
+                border: 1px solid #dededf;
+                background-color: #eceff1;
+                color: #000000;
+                padding: 5px;
+            }
+            
+            .table_component td {
+                border: 3px solid #dededf;
+                color: #000000;
+                padding: 5px 20px;
+                
+            }
+			.table_component tr{transition: all 0.4s ease-out;}
+			.table_component tr:hover{background-color: #FFF7EE !important}
+            .table_component th:first-child,
+            .table_component td:first-child {
+                width: 12%; 
+                text-align: center;
+            }
+            .table_component p {
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .table_component h2 {
+				cursor: pointer;
+				transition: all 0.4s ease-out;
+                position: relative;
+                display: inline-block;
+            }
+			.table_component tr:hover h2{color: #FFAC33}
+			.table_component h2:hover{color: #FFCF70 !important}
+            .table_component h3 {
+				color: #3d3d3d;
+            }
+/*             .table_component tr:hover h2::after {
+                content: "« Lisätietoja yrittäjästä";
+                color:#747678;
+                font-size: 20px;
+                position: absolute;
+                bottom: 2px;
+                left: 100%;
+                margin-left: 10px; 
+                width: 100%;
+                padding: 0px ; 
+                display: inline-block;
+            } */
+            </style>
+		<div class="table_component" role="region" tabindex="0">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><p>9:00-9:15</p><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" width=100%  onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;"></td>
+                        <td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Luksia / Taina Kunttu</h2><h3>Yrittäjyysosaamisen kehittäminen? Miten Luksiassa voi suunnata osaamista yrittäjyyteen?</h3></td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td><p>9:30-10:00</p><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" width=100%  onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;"></td>
+                        <td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän nimi  Amelia Vanhanen</h2><h3>VAKAASTI työelämään  Pätevöidy varhaiskasvatuksen osaajaksi Hankkeen tavoitteena on vastata Länsi –Uudenmaan varhaiskasvatuksen henkilöstöpulaan ja tulevaisuuden työelämän tarpeiseen koulutetuista varhaiskasvatuksen lastenhoitajista. Tavoitteena on kouluttaa...</h3></td>
+                    </tr>
+                    <tr>
+                        <td><p>10:15-10:45</p><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" width=100% onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;"></td>
+                        <td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän nimi / Amelia Vanhanen</h2><h3>VAKAASTI työelämään  Pätevöidy varhaiskasvatuksen osaajaksi Hankkeen tavoitteena on vastata Länsi –Uudenmaan varhaiskasvatuksen henkilöstöpulaan ja tulevaisuuden työelämän tarpeiseen koulutetuista varhaiskasvatuksen lastenhoitajista. Tavoitteena on kouluttaa...</h3></td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td><p>10:45-11:00</p></td>
+                        <td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Omistajanvaihdokseen liittyvä info</h2></td>
+                    </tr>
+                    <tr>
+                        <td><p>11:00-12:00</p></td>
+                        <td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Lounastauko</h2></td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td><p>12:00-12:30</p><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" width=100% onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;"></td>
+					 	<td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän nimi / Amelia Vanhanen</h2><h3>VAKAASTI työelämään  Pätevöidy varhaiskasvatuksen osaajaksi Hankkeen tavoitteena on vastata Länsi –Uudenmaan varhaiskasvatuksen henkilöstöpulaan ja tulevaisuuden työelämän tarpeiseen koulutetuista varhaiskasvatuksen lastenhoitajista. Tavoitteena on kouluttaa...</h3></td>
+                    </tr>
+                    <tr>
+                        <td><p>12:45-13:15</p><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" width=100% onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;"></td>
+                        <td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän nimi / Amelia Vanhanen</h2><h3>VAKAASTI työelämään  Pätevöidy varhaiskasvatuksen osaajaksi Hankkeen tavoitteena on vastata Länsi –Uudenmaan varhaiskasvatuksen henkilöstöpulaan ja tulevaisuuden työelämän tarpeiseen koulutetuista varhaiskasvatuksen lastenhoitajista. Tavoitteena on kouluttaa...</h3></td>
+                    </tr>
+                    <tr style="background-color: #f9f9f9;">
+                        <td><p>13:30-14:00</p><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" width=100% onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;"></td>
+                        <td><h2 onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän nimi / Amelia Vanhanen</h2><h3>VAKAASTI työelämään  Pätevöidy varhaiskasvatuksen osaajaksi Hankkeen tavoitteena on vastata Länsi –Uudenmaan varhaiskasvatuksen henkilöstöpulaan ja tulevaisuuden työelämän tarpeiseen koulutetuista varhaiskasvatuksen lastenhoitajista. Tavoitteena on kouluttaa...</h3></td>
+                    </tr>
+                </tbody>
+            </table>
+		</div>
+		
+		
+		
+		<div >
+            <h1>Me autamme</h1>
+        </div>
+        <div >
+            <p style="margin: 0px;">Haku- ja ohjauspalvelut<br>puh. 044 369 6675<br>hakupalvelut@luksia.fi</p>
+        </div>
+		
+    </div>
+
+
+
+
+
+    <div class="end_text_top">
+        <div class="end_text_top_1">
+            <div class="row">
+            <div style="display: flex; flex-direction: column;">
+                <a href="https://www.luksia.fi/luksia/" style="color: #ffffff;">Tietoa Luksiasta</a>
+                <a href="https://www.luksia.fi/luksia#Asiakirjajulkisuuskuvaus" style="color: #ffffff;">Asiakirjajulkisuuskuvaus</a>
+                <a href="https://www.luksia.fi/avoimet-tyopaikat/" style="color: #ffffff;">Avoimet työpaikat</a>
+                <a href="https://www.luksia.fi/yhteystiedot/" style="color: #ffffff;">Yhteystiedot</a>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <a href="https://www.luksia.fi/koulutus/" style="color: #ffffff;">Koulutushaku</a>
+                <a href="https://www.luksia.fi/anna-palautetta/" style="color: #ffffff;">Palaute</a>
+                <a href="https://www.luksia.fi/haluan-lisatietoja/" style="color: #ffffff;">Haluan lisätietoja</a>
+                <a href="https://www.luksia.fi/luksia#Evastekaytanto" style="color: #ffffff;">Evästeet</a>
+            </div></div>
+            <div class="row"><div style="display: flex; flex-direction: column;">
+                <a href="https://www.luksia.fi/luksia/#tietosuoja" style="color: #ffffff;">Tietosuojaseloste</a>
+                <a href="https://www.luksia.fi/luksia/#rekisteriseloste" style="color: #ffffff;">Rekisteriseloste</a>
+                <a href="https://www.luksia.fi/Luksia/#saavutettavuusseloste" style="color: #ffffff;">Saavutettavuusseloste</a>
+                <a href="https://www.luksia.fi/in-english/" style="color: #ffffff;">In English</a>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <a href="https://www.facebook.com/luksiafi/" target="_blank" rel="noreferrer noopener" style="color: #ffffff;">Facebook</a>
+                <a href="https://www.instagram.com/luksiafi/" target="_blank" rel="noreferrer noopener" style="color: #ffffff;">Instagram</a>
+                <a href="https://fi.linkedin.com/company/luksia" target="_blank" rel="noreferrer noopener" style="color: #ffffff;">Linkedin</a>
+                <a href="https://www.tiktok.com/@luksiafi" target="_blank" rel="noreferrer noopener" style="color: #ffffff;">TikTok</a>
+                <a href="https://fi.pinterest.com/luksiafi/" target="_blank" rel="noreferrer noopener" style="color: #ffffff;">Pinterest</a>
+            </div></div>
+        </div>
+    </div>
+
+    <div class="end_text_bottom"><p style=" color:#666666; top: 30%; position: relative;"><p style="color:#7D7D7D; font-size: 20px">
+        Luksia, Länsi-Uudenmaan koulutuskuntayhtymä | Toivonkatu 4, 08100 Lohja | puh. 019 369 61 | Y 0203167-9 | © Luksia 2024</p></div>
+
+<script>
+function redirectToPage(link) {window.location.href = link;}
+</script>
+</body>
+</html>

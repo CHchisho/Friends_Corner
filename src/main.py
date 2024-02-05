@@ -113,3 +113,11 @@ async def startup():
 @app.exception_handler(StarletteHTTPException)
 async def custom_http_exception_handler(request, exc):
     return templates.TemplateResponse("404.html", {"request": request})
+
+
+
+# Luksia page rendering
+@app.get("/luksia")
+def luksia_page(request: Request):
+    return templates.TemplateResponse("luksia_page.html",{"request": request})
+
