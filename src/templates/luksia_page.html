@@ -201,6 +201,11 @@
             justify-content: flex-start;
         }
 	}
+    @media (max-width: 410px) {
+        .row {
+            flex-direction: column;
+        }
+    }
 	</style>
 </head>
 <body>
@@ -305,7 +310,8 @@ Tapahtuma on osa yhteistä teemapäivää Lohjan lukion kanssa, tarjoten arvokas
         
         <style>
             .table_component {
-                overflow: hidden;
+                overflow-y: hidden;
+                overflow-x: auto;
                 width: 100%;
             }
             
