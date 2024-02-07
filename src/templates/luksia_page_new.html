@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            margin-top: 100px;
+            font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+			overflow-x: hidden;
+			background-color: rgba(4,0,11,1.00);
+			
+/*
+			background-image: url("liq.jpg");
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-attachment: fixed;
+*/
+        }
+
+        .navbar {
+            overflow: hidden;
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+/*			background-color: aqua;*/
+			
+        }
+        .navbar_top {
+/*			background-color: brown;*/
+            overflow: hidden;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			
+        }
+        .navbar_top a {
+            color: white;
+            margin: 0 10px;
+            
+            font-weight: 600;
+            word-wrap: break-word;
+            font-size: 30px;
+            transition: all 0.4s ease-in-out;
+            
+            text-decoration: none;
+        }
+        .navbar_top a:hover {
+            color: #FFDA87;
+        }
+		.sun {
+			position: absolute; 
+			right: -16%;  
+			z-index: 0; 
+			pointer-events: none;
+			animation: rotate 120s linear infinite; 
+			opacity: .9;
+		}
+		
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .content h1 {
+            color: #ffb612;
+            font-size: 40px;
+            margin: 30px 0 20px;   
+			position: relative;
+        }
+        .content div {
+            width: 95%;
+            text-align: left; 
+            align-items: left;
+			position: relative;
+        }
+        .content p {
+            color: white;
+            margin: 0px 0;            
+            font-size: 20px;
+            word-wrap: break-word;
+        }
+
+		@keyframes rotate {
+		from {transform: rotate(0deg);}
+		to {transform: rotate(-360deg);}
+		}
+
+        .end_text_bottom {
+            width: 100%;
+            font-size: 25px;
+			padding: 10px 0px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center; 
+			word-wrap: break-word;
+        }
+		.end_text_bottom p {
+			margin: 0;
+		}
+    </style>
+
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="navbar_top">
+			<div style="
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;">
+				<img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-300x300.png" alt="luksia.fi" width="70px">
+				
+				<a style="font-size: 40px;" target="_blank" rel="noopener" href="https://www.luksia.fi/">Luksia</a>
+			</div>
+			<a target="_blank" rel="noopener" href="https://www.luksia.fi/" id="home">Home page</a>
+        </div>
+	</div>
+	
+	
+	
+	<div class="sun">
+		<img  src="{{ url_for('static', path='images/luksia_sun_1000.png') }}" alt="sun" width="600px">
+	</div>
+
+	
+	
+	
+	
+    <div class="content">
+
+		<div style="margin-bottom: 400px;">
+			<div style="margin-left: 5%; margin-top: 120px; width: 60%">
+				<h1 style="font-size: 60px;">Yrittäjän polku - 17.04.2024</h1>
+			</div>
+			<div style="margin-left: 5%; width: 60%">
+				<p class="top_p">Huhtikuussa 17.4.2024 järjestetään Yrittäjän polku -sinun polkusi tapahtuma Harjun luentosalissa, yhteistyössä Lohjan Yrittäjien kanssa. <br><br>Päivä sisältää viisi inspiroivaa yrittäjätarinaa, jotka jaetaan paikan päällä Harjun koulun luentosalissa ja striimataan samanaikaisesti Lohjan lukiolaisille.Tapahtuma on osa yhteistä teemapäivää Lohjan lukion kanssa, tarjoten arvokasta tietoa ja inspiraatiota nuorille yrittäjyydestä kiinnostuneille.  <br><br>Älä jää paitsi mahdollisuudesta oppia ja verkostoitua - tervetuloa Yrittäjän polulle!</p>
+			</div>
+		</div>
+		
+
+<style>
+	.table {
+		display: flex;
+		flex-direction: row; 
+		justify-content: space-between; 
+		z-index: 2; 
+	}
+	.table div {
+		width: 18%;
+		height: auto;
+		margin-right: auto;
+		margin-left: auto;
+		border-radius: 10px;
+	}
+	.table_title {
+		background-color: floralwhite; 
+		width: 80% !important; 
+		height: auto !important;
+		margin: -20% auto 0;
+		border-radius: 10px;
+		margin-left: 100px;
+    	justify-content: center;
+	}
+	.table_title div {
+		width: 40%; height: 100%; display: flex; align-items: center;
+	}
+	.table_title h1 {
+		text-align: center; 
+		font-size: 25px; 
+		margin: 10px auto;
+		cursor: pointer; 
+		opacity: 1; 
+		transition: all 0.4s ease-in-out;
+	}
+	.table_title h1:hover {opacity: .7}
+	.table_quote {
+		width: 80% !important; 
+		margin: 20px auto; 
+		text-align: center !important;
+	}
+	.background {
+		position: fixed; 
+		left: 0; top: 0px; 
+		z-index: -1; 
+		pointer-events: none; 
+		opacity: .25; 
+		min-height: 100%; width: 100%;
+	}
+</style>
+	<style>
+    @media (max-width: 1400px) {
+		.sun {right: -25%;}
+    }
+	@media (max-width: 900px) {
+		.table {
+			flex-direction: column !important;
+/*			flex-direction: column;*/
+		}
+		.table div {
+			width: 80% !important;
+			height: auto;
+			margin: 50px auto;
+		}
+		.table_title {
+			width: 90% !important;
+			height: 200px !important;
+			margin-top: -50px !important;
+		}
+		.table_title div {
+			width: 20% !important;
+			height: 10% !important;
+		}
+		.table_quote {
+			width: 30% !important;
+			height: 35% !important;
+		}
+		.sun {right: -45%; opacity: .6}
+		.table_title div {width: 30% !important;}
+	}
+	@media (max-width: 750px) {.background{display: none}}
+	@media (max-width: 600px) {
+		.sun {right: -65%; opacity: .3}
+		.top_p {text-align: center; width: 150% !important;}
+		.content div {width: 90%; }
+		.table_title div {width: 40% !important;}
+		#home {display: none;}
+	}
+    @media (max-width: 410px) {
+		.sun {right: -100%;}
+		.table_title div {width: 50% !important;}
+    }
+		
+.button_c {
+  font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+  cursor: pointer;
+  color: #000;
+  font-size: 16px;
+  text-transform: uppercase;
+  width: 90%;
+  border: 0;
+  padding: 10px 0;
+  margin-top: 20px;
+  margin-left: -5px;
+  border-radius: 5px;
+  background-color: #fff;
+  -webkit-transition: background-color 300ms;
+  -moz-transition: background-color 300ms;
+  transition: background-color 300ms;
+}
+.button_c:hover {
+/*  background-color: #1480FF;*/
+	background-color: rgba(255,255,255,0.7);
+}
+	</style>
+		<div class="table">
+			<div style="background-color: #5985c3;">
+				<div class="table_title" style="border-top: 6px solid #5985c3;">
+					<h1 style="color: #5985c3;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
+					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
+						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
+					<h1 style="color: #5985c3; margin: 0;">Ihmisen Nimi</h1><br>
+				</div>
+				<div class="table_quote">
+					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
+					<button class="button_c" >Watch now!</button>
+				</div>
+			</div>
+			<div style="background-color: #4fbdc0;">
+				<div class="table_title" style="border-top: 6px solid #4fbdc0;">
+					<h1 style="color: #4fbdc0;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
+					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
+						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
+					<h1 style="color: #4fbdc0; margin: 0;">Ihmisen Nimi</h1><br>
+				</div>
+				<div class="table_quote">
+					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
+					<button class="button_c" >Watch now!</button>
+				</div>
+			</div>
+			<div style="background-color: #e73d71;">
+				<div class="table_title" style="border-top: 6px solid #e73d71;">
+					<h1 style="color: #e73d71;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
+					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
+						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
+					<h1 style="color: #e73d71; margin: 0;">Ihmisen Nimi</h1><br>
+				</div>
+				<div class="table_quote">
+					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistenceedead, and nothing can stand in the way of achieving your goals.</p>
+					<button class="button_c" >Watch now!</button>
+				</div>
+			</div>
+			<div style="background-color: #6dc74e;">
+				<div class="table_title" style="border-top: 6px solid #6dc74e;"> 
+					<h1 style="color: #6dc74e;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
+					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
+						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
+					<h1 style="color: #6dc74e; margin: 0;">Ihmisen Nimi</h1><br>
+				</div>
+				<div class="table_quote">
+					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
+					<button class="button_c" >Watch now!</button>
+				</div>
+			</div>
+			<div style="background-color: #8143a3;">
+				<div class="table_title" style="border-top: 6px solid #8143a3;">
+					<h1 style="color: #8143a3;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
+					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
+						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
+					<h1 style="color: #8143a3; margin: 0;">Ihmisen Nimi</h1><br>
+				</div>
+				<div class="table_quote">
+					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
+					<button class="button_c" >Watch now!</button>
+				</div>
+			</div>
+			
+		
+		</div>
+		
+		
+		
+		
+		<div style="width: 90%; margin: 100px auto 50px;">
+			<div style="">
+				<h1>Me autamme</h1>
+			</div>
+			<div >
+				<p style="margin: 0px;">Haku- ja ohjauspalvelut<br>puh. 044 369 6675<br>hakupalvelut@luksia.fi</p>
+			</div>
+		</div>
+    </div>
+
+
+
+
+
+
+
+    <div class="end_text_bottom">
+		<p style="color:#7D7D7D; font-size: 20px">Luksia, Länsi-Uudenmaan koulutuskuntayhtymä | Toivonkatu 4, 08100 Lohja | © Ilia Chebanik</p>
+	</div>
+	
+		
+	<div class="background">
+		<img  src="{{ url_for('static', path='images/yell_animation.gif') }}" alt="background" width="100%">
+<!--		<img  src="yell_animation.gif" alt="luksia.fi" width="100%" >-->
+	</div>
+	
+	
+<script>
+function redirectToPage(link) {window.location.href = link;}
+</script>
+</body>
+</html>

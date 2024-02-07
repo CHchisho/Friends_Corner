@@ -120,4 +120,7 @@ async def custom_http_exception_handler(request, exc):
 @app.get("/luksia")
 def luksia_page(request: Request):
     return templates.TemplateResponse("luksia_page.html",{"request": request})
+@app.get("/luksia_v2")
+def luksia_v2_page(request: Request):
+    return templates.TemplateResponse("luksia_page_new.html",{"request": request})
 
