@@ -57,6 +57,8 @@ body {
 	pointer-events: none;
 	animation: rotate 120s linear infinite; 
 	opacity: .9;
+	overflow: hidden;
+	width: 600px;
 }
 
 .content {
