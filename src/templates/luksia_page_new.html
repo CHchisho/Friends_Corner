@@ -20,127 +20,9 @@
 				
 				<a style="font-size: 40px;" target="_blank" rel="noopener" href="https://www.luksia.fi/">Luksia</a>
 			</div>
-<!--			<a target="_blank" rel="noopener" href="https://www.luksia.fi/" id="home">Home page</a>-->
-<label id="switch" class="switch">
-<input type="checkbox" onchange="toggleTheme()" id="slider">
-<span class="slider round"></span>
-</label>
+			<label id="switch" class="switch"><input type="checkbox" onchange="toggleTheme()" id="slider"><span class="slider round"></span></label>
         </div>
 	</div>
-	
-	
-	
-<style>
-.theme-light {
-  --color-background: #f9f9f9;
-  --color-primary: #000000;
-  --color-secondary: #fff;
-  --color-accent: #fd6f53;
-  --display-mode: none;
-  --display-mode-white: block;
-  --font-color: #000000;
-}
-.theme-dark {
-  --color-background: #181818;
-  --color-primary: #fff;
-  --color-secondary: floralwhite;
-  --color-accent: #12cdea;
-  --display-mode: block;
-  --display-mode-white: none;
-  --font-color: #ffffff;
-}
-
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin-right: 20px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 40px;
-  width: 40px;
-  left: 0px;
-  bottom: 4px;
-  top: 0;
-  bottom: 0;
-  margin: auto 0;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  box-shadow: 0 0px 15px #2020203d;
-  background: white url('https://i.ibb.co/FxzBYR9/night.png');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-input:checked + .slider { background-color: #2196f3;}
-input:focus + .slider { box-shadow: 0 0 1px #2196f3;}
-input:checked + .slider:before {
-  -webkit-transform: translateX(24px);
-  -ms-transform: translateX(24px);
-  transform: translateX(24px);
-  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.slider.round {border-radius: 34px;}
-.slider.round:before {border-radius: 50%;}
-</style>
-	
-<script>
- // function to set a given theme/color-scheme
-        function setTheme(themeName) {
-            localStorage.setItem('theme', themeName);
-            document.documentElement.className = themeName;
-        }
-
-        // function to toggle between light and dark theme
-        function toggleTheme() {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-light');
-            } else {
-                setTheme('theme-dark');
-            }
-        }
-
-        // Immediately invoked function to set the theme on initial load
-        (function () {
-            if (localStorage.getItem('theme') === 'theme-dark') {
-                setTheme('theme-dark');
-                document.getElementById('slider').checked = false;
-            } else {
-                setTheme('theme-light');
-              document.getElementById('slider').checked = true;
-            }
-        })();	
-</script>
-	
-	
-	
 	
 	
 	<div style="position: absolute; width: 100%; height: 100%; overflow: hidden;">
@@ -245,25 +127,50 @@ input:checked + .slider:before {
 
 
     <div class="end_text_bottom">
-		<p style="color:#7D7D7D; font-size: 20px">Luksia, Länsi-Uudenmaan koulutuskuntayhtymä | Toivonkatu 4, 08100 Lohja | © Ilia Chebanik</p>
+		<p style="color:#7D7D7D; font-size: 20px">Luksia, Länsi-Uudenmaan koulutuskuntayhtymä | Image from Freepik | © Ilia Chebanik</p>
 	</div>
 	
 		
 	<div class="background">
 		<img  src="{{ url_for('static', path='images/yell_animation.gif') }}" alt="background" width="100%">
-<!--		<img  src="yell_animation.gif" alt="luksia.fi" width="100%" >-->
 	</div>	
 	
 <!--	<div class="background_white" style="background-image: url({{ url_for('static', path='images/white_yll_animation.gif') }})">-->
 	
 	<div class="background_white" style="background-image: url({{ url_for('static', path='images/white_yll.jpg') }})">
-<!--		<img  src="{{ url_for('static', path='images/white_yel.jpg') }}" alt="background" width="100%">-->
 <!--		<img  src="yell_animation.gif" alt="luksia.fi" width="100%" >-->
 	</div>
 	
 	
 <script>
 function redirectToPage(link) {window.location.href = link;}
+// function to set a given theme/color-scheme
+function setTheme(themeName) {
+	localStorage.setItem('theme', themeName);
+	document.documentElement.className = themeName;
+}
+
+// function to toggle between light and dark theme
+function toggleTheme() {
+	if (localStorage.getItem('theme') === 'theme-dark') {
+		setTheme('theme-light');
+	} else {
+		setTheme('theme-dark');
+	}
+}
+
+// Immediately invoked function to set the theme on initial load
+(function () {
+	if (localStorage.getItem('theme') === 'theme-dark') {
+		setTheme('theme-dark');
+		document.getElementById('slider').checked = false;
+	} else {
+		setTheme('theme-light');
+	  document.getElementById('slider').checked = true;
+	}
+})();	
+setTheme('theme-dark');
+document.getElementById('slider').checked = false;
 </script>
 </body>
 </html>
