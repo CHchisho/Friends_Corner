@@ -3,7 +3,7 @@ body {
 	margin-top: 100px;
 	font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
 	overflow-x: hidden;
-	background-color: rgba(4,0,11,1.00);
+	background-color: var(--color-background);
 	
 /*
 	background-image: url("liq.jpg");
@@ -37,7 +37,7 @@ body {
 	
 }
 .navbar_top a {
-	color: white;
+	color: var(--color-primary);
 	margin: 0 10px;
 	
 	font-weight: 600;
@@ -55,7 +55,7 @@ body {
 	right: -16%;  
 	z-index: 0; 
 	pointer-events: none;
-	animation: rotate 120s linear infinite; 
+	animation: rotate 320s linear infinite; 
 	opacity: .9;
 	overflow: hidden;
 	width: 600px;
@@ -81,7 +81,7 @@ body {
 	position: relative;
 }
 .content p {
-	color: white;
+	color: var(--color-primary);
 	margin: 0px 0;            
 	font-size: 20px;
 	word-wrap: break-word;
@@ -91,6 +91,8 @@ body {
 from {transform: rotate(0deg);}
 to {transform: rotate(-360deg);}
 }
+
+.h1_text {margin-left: 20%;}
 
 .end_text_bottom {
 	width: 100%;
@@ -120,7 +122,7 @@ to {transform: rotate(-360deg);}
 	border-radius: 10px;
 }
 .table_title {
-	background-color: floralwhite; 
+	background-color: var(--color-secondary); 
 	width: 80% !important; 
 	height: auto !important;
 	margin: -20% auto 0;
@@ -145,16 +147,9 @@ to {transform: rotate(-360deg);}
 	margin: 20px auto; 
 	text-align: center !important;
 }
-.background {
-	position: fixed; 
-	left: 0; top: 0px; 
-	z-index: -1; 
-	pointer-events: none; 
-	opacity: .25; 
-	min-height: 100%; width: 100%;
-}
+.table_quote p {color: #fff;}
 @media (max-width: 1400px) {
-	.sun {right: -25%;}
+	.sun {right: -25%; opacity: .8}
 }
 @media (max-width: 900px) {
 	.table {
@@ -180,11 +175,13 @@ to {transform: rotate(-360deg);}
 		height: 35% !important;
 	}
 	.sun {right: -45%; opacity: .6}
+	.background_white{display: none !important;}
+	.h1_text {margin-left: 0% !important;}
 	.table_title div {width: 30% !important;}
 }
-@media (max-width: 750px) {.background{display: none}}
+@media (max-width: 750px) {.background{--display-mode: none;}}
 @media (max-width: 600px) {
-	.sun {right: -65%; opacity: .3}
+	.sun {right: -65%; opacity: .2}
 	.top_p {text-align: center; width: 150% !important;}
 	.content div {width: 90%; }
 	.table_title div {width: 40% !important;}
@@ -194,6 +191,29 @@ to {transform: rotate(-360deg);}
 	.sun {right: -100%;}
 	.table_title div {width: 50% !important;}
 }
+
+
+.background {
+	position: fixed;
+	display: var(--display-mode);
+	left: 0; top: 0px; 
+	z-index: -1; 
+	pointer-events: none; 
+	opacity: .25; 
+	min-height: 100%; width: 100%;
+}
+.background_white {
+	position: absolute;
+	display: var(--display-mode-white);
+	left: 0; top: 0px; 
+	z-index: -1; 
+	pointer-events: none; 
+	opacity: .85; 
+	width: 100vw; height: 100vh;
+  background: no-repeat;
+  background-size: cover;
+}
+
 
 .button_c {
   font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;

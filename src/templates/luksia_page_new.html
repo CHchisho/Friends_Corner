@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="{{ url_for('static', path='/luksia_page_new.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="../static/luksia_page_new.css" />
 	<title>Yrittäjän polku</title>
 </head>
 <body>
@@ -19,9 +20,127 @@
 				
 				<a style="font-size: 40px;" target="_blank" rel="noopener" href="https://www.luksia.fi/">Luksia</a>
 			</div>
-			<a target="_blank" rel="noopener" href="https://www.luksia.fi/" id="home">Home page</a>
+<!--			<a target="_blank" rel="noopener" href="https://www.luksia.fi/" id="home">Home page</a>-->
+<label id="switch" class="switch">
+<input type="checkbox" onchange="toggleTheme()" id="slider">
+<span class="slider round"></span>
+</label>
         </div>
 	</div>
+	
+	
+	
+<style>
+.theme-light {
+  --color-background: #f9f9f9;
+  --color-primary: #000000;
+  --color-secondary: #fff;
+  --color-accent: #fd6f53;
+  --display-mode: none;
+  --display-mode-white: block;
+  --font-color: #000000;
+}
+.theme-dark {
+  --color-background: #181818;
+  --color-primary: #fff;
+  --color-secondary: floralwhite;
+  --color-accent: #12cdea;
+  --display-mode: block;
+  --display-mode-white: none;
+  --font-color: #ffffff;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-right: 20px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white url('https://i.ibb.co/FxzBYR9/night.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider { background-color: #2196f3;}
+input:focus + .slider { box-shadow: 0 0 1px #2196f3;}
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.slider.round {border-radius: 34px;}
+.slider.round:before {border-radius: 50%;}
+</style>
+	
+<script>
+ // function to set a given theme/color-scheme
+        function setTheme(themeName) {
+            localStorage.setItem('theme', themeName);
+            document.documentElement.className = themeName;
+        }
+
+        // function to toggle between light and dark theme
+        function toggleTheme() {
+            if (localStorage.getItem('theme') === 'theme-dark') {
+                setTheme('theme-light');
+            } else {
+                setTheme('theme-dark');
+            }
+        }
+
+        // Immediately invoked function to set the theme on initial load
+        (function () {
+            if (localStorage.getItem('theme') === 'theme-dark') {
+                setTheme('theme-dark');
+                document.getElementById('slider').checked = false;
+            } else {
+                setTheme('theme-light');
+              document.getElementById('slider').checked = true;
+            }
+        })();	
+</script>
+	
+	
+	
 	
 	
 	<div style="position: absolute; width: 100%; height: 100%; overflow: hidden;">
@@ -35,8 +154,8 @@
 	
     <div class="content">
 
-		<div style="margin-bottom: 400px;">
-			<div style="margin-left: 5%; margin-top: 120px; width: 60%">
+		<div style="margin-bottom: 16%;" class="h1_text">
+			<div style="margin-left: 5%; margin-top: 8%; width: 60%">
 				<h1 style="font-size: 60px;">Yrittäjän polku - 17.04.2024</h1>
 			</div>
 			<div style="margin-left: 5%; width: 60%">
@@ -85,24 +204,24 @@
 					<button class="button_c" >Watch now!</button>
 				</div>
 			</div>
-			<div style="background-color: #6dc74e;">
-				<div class="table_title" style="border-top: 6px solid #6dc74e;"> 
-					<h1 style="color: #6dc74e;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
+			<div style="background-color: #61c867;">
+				<div class="table_title" style="border-top: 6px solid #61c867;"> 
+					<h1 style="color: #61c867;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
 					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
 						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
-					<h1 style="color: #6dc74e; margin: 0;">Ihmisen Nimi</h1><br>
+					<h1 style="color: #61c867; margin: 0;">Ihmisen Nimi</h1><br>
 				</div>
 				<div class="table_quote">
 					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
 					<button class="button_c" >Watch now!</button>
 				</div>
 			</div>
-			<div style="background-color: #8143a3;">
-				<div class="table_title" style="border-top: 6px solid #8143a3;">
-					<h1 style="color: #8143a3;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
+			<div style="background-color: #865a9f;">
+				<div class="table_title" style="border-top: 6px solid #865a9f;">
+					<h1 style="color: #865a9f;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
 					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
 						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
-					<h1 style="color: #8143a3; margin: 0;">Ihmisen Nimi</h1><br>
+					<h1 style="color: #865a9f; margin: 0;">Ihmisen Nimi</h1><br>
 				</div>
 				<div class="table_quote">
 					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
@@ -132,6 +251,13 @@
 		
 	<div class="background">
 		<img  src="{{ url_for('static', path='images/yell_animation.gif') }}" alt="background" width="100%">
+<!--		<img  src="yell_animation.gif" alt="luksia.fi" width="100%" >-->
+	</div>	
+	
+<!--	<div class="background_white" style="background-image: url({{ url_for('static', path='images/white_yll_animation.gif') }})">-->
+	
+	<div class="background_white" style="background-image: url({{ url_for('static', path='images/white_yll.jpg') }})">
+<!--		<img  src="{{ url_for('static', path='images/white_yel.jpg') }}" alt="background" width="100%">-->
 <!--		<img  src="yell_animation.gif" alt="luksia.fi" width="100%" >-->
 	</div>
 	
