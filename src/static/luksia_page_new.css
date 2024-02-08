@@ -92,7 +92,7 @@ from {transform: rotate(0deg);}
 to {transform: rotate(-360deg);}
 }
 
-.h1_text {margin-left: 20%;}
+.h1_text {margin-left: var(--margin-left-h);}
 
 .end_text_bottom {
 	width: 100%;
@@ -157,6 +157,7 @@ to {transform: rotate(-360deg);}
   --display-mode: none;
   --display-mode-white: block;
   --font-color: #000000;
+  --margin-left-h: 20%; 
 }
 .theme-dark {
   --color-background: #181818;
@@ -166,6 +167,7 @@ to {transform: rotate(-360deg);}
   --display-mode: block;
   --display-mode-white: none;
   --font-color: #ffffff;
+  --margin-left-h: 0%; 
 }
 
 /* The switch - the box around the slider */
