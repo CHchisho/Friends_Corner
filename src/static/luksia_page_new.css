@@ -172,7 +172,7 @@ to {transform: rotate(-360deg);}
 }
 .block_logo {
 	width: 200px;
-	margin: 0 auto auto;
+	margin: auto;
 	display: flex;
 	justify-content: center;
 	cursor: pointer;
