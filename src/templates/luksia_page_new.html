@@ -60,7 +60,7 @@
 				</div>
 				<h3 class="block_name">Taina Kunttu</h3>
 				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/Luksia_white.png') }}" width="170px"></div>
-				<h4 class="block_slogan">Yrittäjyysosaamisen kehittäminen? Miten Luksiassa voi suunnata osaamista yrittäjyyteen?</h4>
+				<h4 class="block_slogan">Yrittäjyysosaamisen kehittäminen? Miten Luksiassa voi kehittää yrittäjyysosaamista?</h4>
 				<div class="block_button">
 					<button class="button" id="button0">Watch here!</button>
 				</div>
@@ -110,7 +110,7 @@
 					<h2 class="block_header_h2" onClick="redirectToPage('https://digiteam.fi/')">Digiteam Oy</h2>
 				</div>
 				<h3 class="block_name">Antti Kärki</h3>
-				<div class="block_logo"><img alt="logo" src="https://mlavatqvr5rz.i.optimole.com/cb:Dvj-.5820d/w:169/h:28/q:mauto/ig:avif/f:best/https://digiteam.fi/wp-content/uploads/2020/02/Digiteam-logo-blue.svg" width="200px" style="margin-block: 30px;"></div>
+				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/digiteam_logo.svg') }}" width="200px" style="margin-block: 30px;"></div>
 				<h4 class="block_slogan">"Ohjelmistotuen ja kehityksen huippuosaaminen. Digiteam Oy - luotettava kumppaninne digitaalisessa maailmassa. Luodaan yhdessä jotain suurta!"</h4>
 				<div class="block_button">
 					<button class="button" id="button3">Watch here!</button>
@@ -196,7 +196,7 @@ function setButtonText(button, text) {
 }
 
 function changeButtonText() {
-  const times = ['9.00 – 9.15', '9.30 – 10.00', '10:15 – 10:45', '12:00 – 12:30', '12:45 – 13:15', '13:13 – 14:00'];
+  const times = ['9.00 – 9.15', '9.30 – 10.00', '10:15 – 10:45', '12:00 – 12:30', '12:45 – 13:15', '13:30 – 14:00'];
   
   buttons.forEach((button, index) => {
     const time = times[index % times.length]; 
