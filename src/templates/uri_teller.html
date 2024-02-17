@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>URI Teller game</title>
+
+	<style>
+	body {
+		margin: 0;
+		font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+		overflow-x: hidden;
+	}
+	.logo {
+		margin: 0; 
+		padding: 14px 100px; 
+		color: white; 
+		font-size: 30px;}
+	.content {
+		display: flex;
+		flex-direction: column;
+		width: 60%;
+		height: 80vh;
+		margin: 0 auto;
+	}
+	.uri_image {
+		position: absolute;
+		bottom: 15vh;
+		width: 10%;
+		left: 5%;
+	}
+	input[type=text] {height: 20px; margin: 10px 5%; width: 60%; border-radius: 5px;}
+	input[type=text]:focus {border: 3px solid #555;}
+	select {border-radius: 5px; border: 2px solid #555; margin: 10px 5%; width: 60%; height: 25px; }
+	#answer_num {font-weight: 600;}
+	#answer_text {margin: 0 0 15px 0;text-align: start;}
+	#answer_check {text-align: start;}
+	.display_none {display: none;}
+	.display_block {display: block;}
+	.made_by{content: 'Ilia Chebanik';}
+
+
+	.blockquote-3 {
+		position: relative;
+		text-align: center;
+		background-color: white;
+		margin: 16px 16px 34px 16px;
+		border: 4px solid cornflowerblue;
+		border-radius: 20px;
+		padding: 16px 24px;
+		font-size: 18px;
+		transition: all 0.6s ease;
+	}
+	.blockquote-3:before,
+	.blockquote-3:after {content: '';position: absolute; width: 0; height: 0;}
+	.blockquote-3:before {
+		left: 30px;
+		bottom: -32px;
+		border: 16px solid;
+		border-color: cornflowerblue transparent transparent cornflowerblue;
+	}
+	.blockquote-3:after {
+		left: 35px;
+		bottom: -21px;
+		border: 12px solid;
+		border-color: #fff transparent transparent #fff;
+		transition: all 0.6s ease;
+	}
+	.back_green {background-color: #c4ffae;}
+	.back_red {background-color: #ff8383;}
+
+	.button_c {
+		cursor: pointer;
+		color: #000;
+		font-size: 16px;
+		text-transform: uppercase;
+		border: 0;
+		padding: 10px;
+		border-radius: 10px;
+		background-color: #5DC5FF;
+		font-weight: bold;
+		width: auto;
+		-webkit-transition: background-color 300ms;
+		-moz-transition: background-color 300ms;
+		transition: background-color 300ms;
+		animation: shadow 2s infinite linear;
+	}.button_c:hover {background-color: #8ED6FF;}
+	.disabled {pointer-events: none;}
+	@keyframes shadow {
+		0% {box-shadow: 0 0 10px 0px rgb(141, 238, 255), 0 0 10px 0px rgb(141, 238, 255); }
+		50% {box-shadow: 0 0 18px 6px rgba(255, 48, 26, 0), 0 0 4px 10px rgba(255, 48, 26, 0);}
+		100% {box-shadow: 0 0 10px 0px rgb(141, 238, 255), 0 0 10px 0px rgb(141, 238, 255);}
+	}
+	@media (max-width: 700px) {
+		.uri_image {display: none;}
+		.content {width: auto;}
+		#block_start div {flex-direction: column !important;}
+		#block_start h3 {width: 100% !important;}
+		.logo {padding: 14px 40px;}
+	}
+	</style>
+</head>
+
+<body style="padding: 0; margin: 0;" id="body">
+
+	<div style="width: 100vw; height: 60px; background-color: cornflowerblue; top:0">
+		<p class="logo">URI Teller</p>
+	</div>
+	
+	<div class="content">
+
+		<div id="block_start" style="display: flex; flex-direction: column; justify-content: center;">
+			<h2 style="margin: 25px auto 5px;">URI Teller</h2>
+			<div style="display: flex; flex-direction: row; justify-content: space-between;">
+				<h3 style="margin: 10px 5%; width: 30%;">Pelaajan nimi:</h3>
+				<input type="text" id="pelaajan_nimi">
+			</div>		
+			<div style="display: flex; flex-direction: row; justify-content: space-between;">
+				<h3 style="margin: 10px 5%; width: 30%;">Kysymysryhmä:</h3>
+				<select id="kysymysryhma" name="kysymysryhma"></select>
+			</div>
+			<button class="button_c" id="button_1" style="width: auto; margin: 20px auto;">Aloita</button>
+		</div>
+		
+		<div class="display_none" id="answer">
+			<blockquote class="blockquote-3" id="blockquote">
+				<p id="answer_num"></p>
+				<p id="answer_text">Hello, stranger! My name is URI Teller and i am here to test your knowledge of Ohm's law.</p>
+				<div id="answer_check"></div>
+				<input type="text" id="answer_input" class="display_none" style="margin: 10px 0;">
+				<div style="display: flex; justify-content: flex-end; width: 100%; ">
+					<button class="button_c" id="button" onClick="gameplay()">Start</button>
+				</div>
+			</blockquote> 
+	  </div>
+
+	</div>
+	
+	
+	<div class="uri_image"><img  src="{{ url_for('static', path='images/prof.jpg') }}" alt="prof" width="100%"></div>	
+
+	
+	
+<script>
+// When you open the page, you need to get all the names of the question groups and translate into js dictionary data_ryhma
+var step = 0;
+var pelaajanNimi = "Name"
+var data_ryhma = {
+    "1": "Ryhmä 1",
+    "2": "Ryhmä 2",
+    "3": "Ryhmä 3",
+}
+// Here all names from the dictionary will be included in the selection list
+var selectElement = document.getElementById('kysymysryhma');
+selectElement.innerHTML = '';
+for (var key in data_ryhma) {
+    if (data_ryhma.hasOwnProperty(key)) {
+        var option = document.createElement('option');
+        option.value = key;
+        option.textContent = data_ryhma[key];
+        selectElement.appendChild(option);
+    }
+}
+	
+// Check the name and selected group.
+document.getElementById('button_1').addEventListener('click', function() {
+	pelaajanNimi = document.getElementById('pelaajan_nimi').value;
+	var kysymysryhma = document.getElementById('kysymysryhma').value;
+	if (pelaajanNimi.length<=2 || pelaajanNimi.length>=20) {
+		document.getElementById('pelaajan_nimi').classList.add('back_red');
+		return
+	}
+	
+	// 	
+	// Here we need to add a database reference with available questions and save everything to the dictionary data_kysymyksia
+	// 
+	
+	document.getElementById('answer_text').innerHTML = "Hello, " + pelaajanNimi + "! My name is URI Teller and i am here to test your knowledge of Ohm's law.";
+	console.log("PelaajanNimi:", pelaajanNimi);
+	console.log("Kysymysryhma:", kysymysryhma);
+	document.getElementById('block_start').remove();
+	document.getElementById('answer').classList.add('display_block');
+	document.getElementById('button').innerHTML = "OK";
+	step=1;console.log("Step: ",step);
+});
+
+
+// After each answer, an outcome is selected
+function gameplay() {
+	if (step===1) {
+		document.getElementById('answer_text').innerHTML = "Ohm's law is U = R*I where <br> U  Voltage, R = Resistance and I = Current. <br> By knowling teo of these, you can calculate the third value by using Ohm's Law.";
+		document.getElementById('button').innerHTML = "Start";
+		step=10;console.log("Step: ",step);
+		return
+	}
+	
+// The emergence of the first question.
+	if (step===10) {
+		document.getElementById('answer_num').innerHTML = "Question №" + String(step-9);
+		document.getElementById('answer_text').innerHTML = data_kysymyksia[step-10]["KysymysTeksti"];
+		document.getElementById('answer_input').classList.add('display_block');
+		document.getElementById('button').innerHTML = "Answer";
+		step++;console.log("Step: ",step);		
+	}
+	else if (step>=10) { 
+		let pelaajan_answer = document.getElementById('answer_input').value;
+		if (pelaajan_answer.length<1) {pelaajan_answer="Nothing";};
+		console.log(pelaajan_answer)
+		
+		// Checking the correct answer
+		var style = document.createElement('style');
+		style.innerHTML = `
+			.blockquote-3:after {border-color: #000 transparent transparent #000 !important;}
+		`;
+
+		
+		if (pelaajan_answer==data_kysymyksia[step-10-1]["OikeaVastaus"]) {
+			document.getElementById('blockquote').classList.add('back_green');
+			style.innerHTML = `	.blockquote-3:after {border-color: #c4ffae transparent transparent #c4ffae !important;}`;
+		}
+		else {
+			document.getElementById('blockquote').classList.add('back_red');
+			style.innerHTML = `	.blockquote-3:after {border-color: #ff8383 transparent transparent #ff8383 !important;}`;
+		}
+		//
+		document.head.appendChild(style);
+		//
+		data_kysymyksia[step-10-1]["pelaajan_answer"] = pelaajan_answer;
+		// Add response time
+		var timestamp = new Date();
+		data_kysymyksia[step-10-1]["timestamp"] = timestamp.toLocaleString();
+//		! Important. Prohibit the button from being pressed so that the player can't quickly click through all the questions.
+		document.getElementById('button').classList.add('disabled');	
+		
+// 		After a second, display a new question
+		setTimeout(function() {
+			document.getElementById('button').classList.remove('disabled');
+			document.getElementById('blockquote').classList.remove('back_green');
+			document.getElementById('blockquote').classList.remove('back_red');
+			style.parentNode.removeChild(style);
+			document.getElementById('answer_input').value = '';
+			document.getElementById('answer_num').innerHTML = "Answer №" + String(step-9);
+			document.getElementById('answer_text').innerHTML = data_kysymyksia[step-10]["KysymysTeksti"];
+			step++;console.log("Step: ",step);		
+		}, 1000); 
+	}
+// After question 10, display all answers.
+	if (step>=20) { setTimeout(function() {
+		document.getElementById('answer_num').remove();
+		document.getElementById('answer_input').remove();
+		
+		let mas_sum = 0;
+		
+		var container = document.getElementById('answer_check');
+		data_kysymyksia.forEach(function(item) {
+			if (item.KysymysTeksti !== "None") {
+				var p = document.createElement('p');
+				p.innerHTML = item.KysymysTeksti + "<br>Correct answer: <span style='font-weight: 700;'>" + item.OikeaVastaus + "</span><br>Your answer"+ ": <span style='font-weight: 700;'>" + item.pelaajan_answer + "</span><br>Time: " + item.timestamp;
+				if (item.OikeaVastaus==item.pelaajan_answer) {mas_sum++; p.style.borderLeft = "5px solid cornflowerblue";}
+				else {p.style.borderLeft = "5px solid red";};
+				p.style.paddingLeft = "5px";
+				container.appendChild(p);
+			}});
+		
+		document.getElementById('answer_text').innerHTML = pelaajanNimi + " - you have" + ": <span style='font-weight: 700;'>"+ mas_sum + "/10 <br>"+ "</span>";
+		document.getElementById('button').innerHTML = "Print";
+		document.getElementById('button').onclick = function() {window.print();}; console.log(data_kysymyksia);
+	}, 1000);}
+}
+
+// Test vocabulary with questions to be retrieved from the database.
+var data_kysymyksia = [
+    {
+        "KysymysID": 1,
+        "KysymysTeksti": "Mikä on virran (I) arvo, kun jännite (U) on 10 volttia ja resistanssi (R) on 2 ohmia? _5_",
+        "OikeaVastaus": "5",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 2,
+        "KysymysTeksti": "Jos virta on 3 ampeeria ja resistanssi on 6 ohmia, mikä on jännitteen arvo? _18_",
+        "OikeaVastaus": "18",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 3,
+        "KysymysTeksti": "Kuinka suuri on resistanssi, jos jännite on 24 volttia ja virta on 4 ampeeria? _6_",
+        "OikeaVastaus": "6",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 4,
+        "KysymysTeksti": "Jos jännite on 12 volttia ja resistanssi on 3 ohmia, mikä on virran arvo? _4_",
+        "OikeaVastaus": "4",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 5,
+        "KysymysTeksti": "Mikä on jännitteen arvo, jos virta on 5 ampeeria ja resistanssi on 10 ohmia? _50_",
+        "OikeaVastaus": "50",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 6,
+        "KysymysTeksti": "Jos resistanssi on 8 ohmia ja jännite on 16 volttia, kuinka suuri on virta? _2_",
+        "OikeaVastaus": "2",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 7,
+        "KysymysTeksti": "Jos virta on 2 ampeeria ja jännite on 30 volttia, mikä on resistanssin arvo? _15_",
+        "OikeaVastaus": "15",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 8,
+        "KysymysTeksti": "Mikä on jännitteen arvo, jos resistanssi on 5 ohmia ja virta on 4 ampeeria? _20_",
+        "OikeaVastaus": "20",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 9,
+        "KysymysTeksti": "Jos jännite on 36 volttia ja virta on 6 ampeeria, kuinka suuri on resistanssi? _6_",
+        "OikeaVastaus": "6",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 10,
+        "KysymysTeksti": "Kuinka suuri on virta, jos resistanssi on 9 ohmia ja jännite on 27 volttia? _3_",
+        "OikeaVastaus": "3",
+        "FK KysymysRyhma": 1
+    },
+    {
+        "KysymysID": 100,
+        "KysymysTeksti": "None",
+        "OikeaVastaus": "100",
+        "FK KysymysRyhma": 1
+    },
+];
+
+</script>
+
+	
+</body>
+</html>

@@ -116,11 +116,17 @@ async def custom_http_exception_handler(request, exc):
 
 
 
-# Luksia page rendering
+# Mini project rendering
 @app.get("/luksia")
 def luksia_page(request: Request):
-    return templates.TemplateResponse("luksia_page.html",{"request": request})
+    return templates.TemplateResponse("luksia_page.html", {"request": request})
 @app.get("/luksia_v2")
 def luksia_v2_page(request: Request):
-    return templates.TemplateResponse("luksia_page_new.html",{"request": request})
+    return templates.TemplateResponse("luksia_page_new.html", {"request": request})
+@app.get("/uri_teller")
+def uri_teller_page(request: Request):
+    return templates.TemplateResponse("uri_teller.html", {"request": request})
+@app.get("/task_manager")
+def task_manager_page(request: Request):
+    return templates.TemplateResponse("simple_task_manager.html", {"request": request})
 

@@ -25,7 +25,7 @@
 	</div>
 	
 	
-	<div style="position: absolute; width: 100%; height: 100%; overflow: hidden;">
+	<div style="position: absolute; width: 100%; height: 100%; overflow: hidden; z-index: 5;">
 		<div class="sun">
 			<img  src="{{ url_for('static', path='images/luksia_sun_1000.png') }}" alt="sun" width="600px">
 		</div>
@@ -35,92 +35,124 @@
 	
 	
     <div class="content">
-
-		<div style="margin-bottom: 16%;" class="h1_text">
-			<div style="margin-left: 5%; margin-top: 8%; width: 60%">
-				<h1 style="font-size: 60px;">Yrittäjän polku - 17.04.2024</h1>
+		
+		
+	
+		<div  class="topic_div">
+			<div class="topic_div_1" style="margin-left: 5%; margin-top: 8%; width: 60%">
+				<h1 class="topic_h1" style="font-size: 60px;">Yrittäjän polku - 17.04.2024</h1>
 			</div>
-			<div style="margin-left: 5%; width: 60%">
-				<p class="top_p">Huhtikuussa 17.4.2024 järjestetään Yrittäjän polku -sinun polkusi tapahtuma Harjun luentosalissa, yhteistyössä Lohjan Yrittäjien kanssa. <br><br>Päivä sisältää viisi inspiroivaa yrittäjätarinaa, jotka jaetaan paikan päällä Harjun koulun luentosalissa ja striimataan samanaikaisesti Lohjan lukiolaisille.Tapahtuma on osa yhteistä teemapäivää Lohjan lukion kanssa, tarjoten arvokasta tietoa ja inspiraatiota nuorille yrittäjyydestä kiinnostuneille.  <br><br>Älä jää paitsi mahdollisuudesta oppia ja verkostoitua - tervetuloa Yrittäjän polulle!</p>
+			<div class="topic_div_2" style="margin-left: 5%; width: 60%">
+				<p class="topic_p">Huhtikuussa 17.4.2024 järjestetään Yrittäjän polku -sinun polkusi tapahtuma Harjun luentosalissa, yhteistyössä Lohjan Yrittäjien kanssa. <br><br>Päivä sisältää viisi inspiroivaa yrittäjätarinaa, jotka jaetaan paikan päällä Harjun koulun luentosalissa ja striimataan samanaikaisesti Lohjan lukiolaisille.Tapahtuma on osa yhteistä teemapäivää Lohjan lukion kanssa, tarjoten arvokasta tietoa ja inspiraatiota nuorille yrittäjyydestä kiinnostuneille.  <br><br>Älä jää paitsi mahdollisuudesta oppia ja verkostoitua - tervetuloa Yrittäjän polulle!</p>
 			</div>
 		</div>
 		
-
-<style>
-
-	</style>
+		
+		
+		
+		
+		
+		
 		<div class="table">
-			<div style="background-color: #5985c3;">
-				<div class="table_title" style="border-top: 6px solid #5985c3;">
-					<h1 style="color: #5985c3;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
-					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
-						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
-					<h1 style="color: #5985c3; margin: 0;">Ihmisen Nimi</h1><br>
+			<div class="full_block" style="background-color: #5985c3;">
+				<div class="block_header" style="border-top: 6px solid #5985c3;">
+					<h2 class="block_header_h2" onClick="redirectToPage('https://luksia.fi/')">Luksia<br>Avauspuhe</h2>
 				</div>
-				<div class="table_quote">
-					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
-					<button class="button_c" >Watch now!</button>
-				</div>
-			</div>
-			<div style="background-color: #4fbdc0;">
-				<div class="table_title" style="border-top: 6px solid #4fbdc0;">
-					<h1 style="color: #4fbdc0;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
-					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
-						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
-					<h1 style="color: #4fbdc0; margin: 0;">Ihmisen Nimi</h1><br>
-				</div>
-				<div class="table_quote">
-					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
-					<button class="button_c" >Watch now!</button>
-				</div>
-			</div>
-			<div style="background-color: #e73d71;">
-				<div class="table_title" style="border-top: 6px solid #e73d71;">
-					<h1 style="color: #e73d71;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
-					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
-						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
-					<h1 style="color: #e73d71; margin: 0;">Ihmisen Nimi</h1><br>
-				</div>
-				<div class="table_quote">
-					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistenceedead, and nothing can stand in the way of achieving your goals.</p>
-					<button class="button_c" >Watch now!</button>
-				</div>
-			</div>
-			<div style="background-color: #61c867;">
-				<div class="table_title" style="border-top: 6px solid #61c867;"> 
-					<h1 style="color: #61c867;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
-					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
-						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
-					<h1 style="color: #61c867; margin: 0;">Ihmisen Nimi</h1><br>
-				</div>
-				<div class="table_quote">
-					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
-					<button class="button_c" >Watch now!</button>
-				</div>
-			</div>
-			<div style="background-color: #865a9f;">
-				<div class="table_title" style="border-top: 6px solid #865a9f;">
-					<h1 style="color: #865a9f;" onClick="redirectToPage('https://www.luksia.fi/')">Yrittäjän Nimi</h1>
-					<div><img src="https://www.luksia.fi/wp-content/uploads/2023/06/Luksia_Aurinko-100x100.png" 
-						width="100%" onClick="redirectToPage('https://www.luksia.fi/')" style="cursor: pointer;" alt="logo"></div>
-					<h1 style="color: #865a9f; margin: 0;">Ihmisen Nimi</h1><br>
-				</div>
-				<div class="table_quote">
-					<p>The first step to success is believing in yourself. Pursue your dreams with confidence and persistence, and nothing can stand in the way of achieving your goals.</p>
-					<button class="button_c" >Watch now!</button>
+				<h3 class="block_name">Taina Kunttu</h3>
+				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/Luksia_white.png') }}" width="200px"></div>
+				<h4 class="block_slogan">Yrittäjyysosaamisen kehittäminen? Miten Luksiassa voi suunnata osaamista yrittäjyyteen?</h4>
+				<div class="block_button">
+					<button class="button" id="button0">Watch here!</button>
 				</div>
 			</div>
 			
-		
+			<div class="full_block" style="background-color: #e45959;">
+				<div class="block_header" style="border-top: 6px solid #e45959;">
+					<h2 class="block_header_h2" onClick="redirectToPage('https://aplico.fi/')">Liikunta- ja Hyvinvointikeskus Aplico Oy</h2>
+				</div>
+				<h3 class="block_name">Jutta Österberg-Hurme</h3>
+				<div class="block_logo"><img alt="logo" src="https://mlavatqvr5rz.i.optimole.com/cb:7R24.582d2/w:300/h:133/q:mauto/ig:avif/f:best/https://aplico.fi/wp-content/uploads/Aplico-logo.png" width="150px"></div>
+				<h4 class="block_slogan">"Löydä uusi tie terveyteen ja hyvinvointiin Liikunta- ja Hyvinvointikeskus Aplico Oy: n kanssa. Tavoitteemme on innostaa sinua aktiiviseen elämäntapaan ja saavuttamaan tavoitteesi."</h4>
+				<div class="block_button">
+					<button class="button" id="button1">Watch here!</button>
+				</div>
+			</div>
+			
+			
+			<div class="full_block" style="background-color: #4fbdc0;">
+				<div class="block_header" style="border-top: 6px solid #4fbdc0;">
+					<h2 class="block_header_h2" onClick="redirectToPage('https://rklsundholm.fi/')">Rakennusliike Sundholm Oy</h2>
+				</div>
+				<h3 class="block_name">Hannu Saarelma</h3>
+				<div class="block_logo"><img alt="logo" src="https://rklsundholm.fi/wp-content/uploads/RKL_Sundholm_logo_tumma_akkuporakone-muok.png.webp" width="200px"></div>
+				<h4 class="block_slogan">"Rakennamme unelmia tiili tiileltä! Kotinne on meidän huolemme. Rakennusliike Sundholm Oy: n räjähdysmäinen nopeus ja luotettavuus. Vakuuta itsesi!"</h4>
+				<div class="block_button">
+					<button class="button" id="button2">Watch here!</button>
+				</div>
+			</div>
+			
+			
+			<div class="full_block" style="background-color: #ffae55; justify-content: space-between;">
+				<div class="block_header_info">
+					<h2 class="block_header_h2">Omistajanvaihdokseen liittyvä info</h2>
+					<h2 class="block_header_h2" style="margin-top:10px;">10:45 – 11:00</h2>
+				</div>
+				<div class="block_header_info">
+					<h2 class="block_header_h2">Lounastauko</h2>
+					<h2 class="block_header_h2" style="margin-top:10px;">11:00 – 12:00</h2>
+				</div>
+			</div>			
+			
+			
+			<div class="full_block" style="background-color: #e73d71;">
+				<div class="block_header" style="border-top: 6px solid #e73d71;">
+					<h2 class="block_header_h2" onClick="redirectToPage('https://digiteam.fi/')">Digiteam Oy</h2>
+				</div>
+				<h3 class="block_name">Antti Kärki</h3>
+				<div class="block_logo"><img alt="logo" src="https://mlavatqvr5rz.i.optimole.com/cb:Dvj-.5820d/w:169/h:28/q:mauto/ig:avif/f:best/https://digiteam.fi/wp-content/uploads/2020/02/Digiteam-logo-blue.svg" width="200px" style="margin-block: 20px;"></div>
+				<h4 class="block_slogan">"Ohjelmistotuen ja kehityksen huippuosaaminen. Digiteam Oy - luotettava kumppaninne digitaalisessa maailmassa. Luodaan yhdessä jotain suurta!"</h4>
+				<div class="block_button">
+					<button class="button" id="button3">Watch here!</button>
+				</div>
+			</div>
+			
+			
+			<div class="full_block" style="background-color: #61c867;">
+				<div class="block_header" style="border-top: 6px solid #61c867;">
+					<h2 class="block_header_h2" onClick="redirectToPage('https://autotalolohja.fi/')">Autotalo Lohja Oy</h2>
+				</div>
+				<h3 class="block_name">Juhani Mattinen</h3>
+				<div class="block_logo"><img alt="logo" src="https://autohuoltolohja.fi/wp-content/uploads/2020/04/autotalolohja_logo.jpg" width="220px" style="margin-block: 20px; border-radius: 10px;"></div>
+				<h4 class="block_slogan">Uusi autonne odottaa teitä! Autotalo Lohja Oy tarjoaa laajan valikoiman autoja takuulla laadusta ja luotettavuudesta. Hinnat yllättävät miellyttävästi!</h4>
+				<div class="block_button">
+					<button class="button" id="button4">Watch here!</button>
+				</div>
+			</div>
+			
+			
+			
+			<div class="full_block" style="background-color: #865a9f;">
+				<div class="block_header" style="border-top: 6px solid #865a9f;">
+					<h2 class="block_header_h2" onClick="redirectToPage('https://www.juhlaserviisi.fi/')">Pure Experience Oy</h2>
+				</div>
+				<h3 class="block_name">Elina Kaukojärvi</h3>
+				<div class="block_logo" onClick="redirectToPage('https://www.juhlaserviisi.fi/')"><img alt="logo" src="{{ url_for('static', path='images/PURE_valkoinen_edited_ed.png') }}" width="100px"></div>
+				<h4 class="block_slogan">"Onnellinen se, joka on niin terve, että voi lähteä retkelle, ja vielä onnellisempi se terve, joka ymmärtää lähteä retkelle." <br>-professori Kaarina Kari 1937</h4>
+				<div class="block_button">
+					<button class="button" id="button5">Watch here!</button>
+				</div>
+			</div>
 		</div>
 		
+		
+		
 
-		<div style="width: 90%; margin: 100px auto 50px;">
-			<div style="">
-				<h1>Me autamme</h1>
+		<div style="width: 90%; margin: 20px auto;">
+			<div >
+				<h1 style="color: #ffb612; font-size: 45px; margin: 0 0 10px;">Me autamme</h1>
 			</div>
 			<div >
-				<p style="margin: 0px;">Haku- ja ohjauspalvelut<br>puh. 044 369 6675<br>hakupalvelut@luksia.fi</p>
+				<p style="margin: 0px; color: var(--color-primary); font-size: 20px">Haku- ja ohjauspalvelut<br>puh. 044 369 6675<br>hakupalvelut@luksia.fi</p>
 			</div>
 		</div>
     </div>
@@ -143,7 +175,49 @@
 	
 	
 <script>
-function redirectToPage(link) {window.location.href = link;}
+	
+	
+const buttons = [
+  document.getElementById('button0'),
+  document.getElementById('button1'),
+  document.getElementById('button2'),
+  document.getElementById('button3'),
+  document.getElementById('button4'),
+  document.getElementById('button5')
+];
+
+function setButtonText(button, text) {
+  button.classList.add('opac_0');
+  setTimeout(() => {
+  	button.textContent = text;
+    button.classList.remove('opac_0');
+  }, 1000);
+}
+
+function changeButtonText() {
+  const times = ['9.00 – 9.15', '9.30 – 10.00', '10:15 – 10:45', '12:00 – 12:30', '12:45 – 13:15', '13:13 – 14:00'];
+  
+  buttons.forEach((button, index) => {
+    const time = times[index % times.length]; 
+
+    setTimeout(() => {
+      setButtonText(button, time);
+    }, index * 3000);
+
+    setTimeout(() => {
+      setButtonText(button, 'Watch here!');
+    }, index * 3000 + 15000);
+  });
+}
+
+changeButtonText();
+setInterval(changeButtonText, 30000);
+	
+	
+	
+//function redirectToPage(link) {window.location.href = link;}
+function redirectToPage(link) {window.open(link, '_blank');}
+
 // function to set a given theme/color-scheme
 function setTheme(themeName) {
 	localStorage.setItem('theme', themeName);
