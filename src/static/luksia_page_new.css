@@ -130,7 +130,7 @@ to {transform: rotate(-360deg);}
 
 .full_block {	
 	width: 280px; 
-	min-height: 400px; 
+	min-height: 430px; 
 /*	background-color: var(--back-color-1); */
 /*	background-color: white;*/
 	display: flex; 
@@ -172,24 +172,26 @@ to {transform: rotate(-360deg);}
 }
 .block_logo {
 	width: 200px;
-	margin: 0 auto;
+	margin: 0 auto auto;
 	display: flex;
 	justify-content: center;
 	cursor: pointer;
 }
 .block_slogan {
-	margin: 10px 10px auto;
+/*	margin: 10px 10px auto;*/
+	height: 120px;
+	margin: 10px 10px;
 	word-wrap: break-word;
     overflow-wrap: break-word;
 	text-align: center;
-/*	text-align: center;*/
+/*	text-align: start;*/
 	font-style: italic;
 	font-weight: 100;
 	color: white;
 	font-size: 17px;
 }
 .block_button {
-	margin: 20px auto 0;
+	margin: 10px auto 0;
 	width: 90%;
 }
 
