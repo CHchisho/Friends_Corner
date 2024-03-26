@@ -36,17 +36,39 @@
 	
     <div class="content">
 		
-		
 	
 		<div  class="topic_div">
-			<div class="topic_div_1" style="margin-left: 5%; margin-top: 8%; width: 60%">
-				<h1 class="topic_h1" style="font-size: 60px;">Yrittäjän polku - 17.04.2024</h1>
+			<div class="topic_div_1" style="margin-left: 5%; margin-top: 50px; width: 60%">
+				<h1 class="topic_h1" style="font-size: 60px;">Yrittäjän polku - Sinun polkusi?</h1>
 			</div>
 			<div class="topic_div_2" style="margin-left: 5%; width: 60%">
-				<p class="topic_p">Huhtikuussa 17.4.2024 järjestetään Yrittäjän polku -sinun polkusi tapahtuma Harjun luentosalissa, yhteistyössä Lohjan Yrittäjien kanssa. <br><br>Päivä sisältää viisi inspiroivaa yrittäjätarinaa, jotka jaetaan paikan päällä Harjun koulun luentosalissa ja striimataan samanaikaisesti Lohjan lukiolaisille.Tapahtuma on osa yhteistä teemapäivää Lohjan lukion kanssa, tarjoten arvokasta tietoa ja inspiraatiota nuorille yrittäjyydestä kiinnostuneille.  <br><br>Älä jää paitsi mahdollisuudesta oppia ja verkostoitua - tervetuloa Yrittäjän polulle!</p>
+				<p class="topic_p">
+Keskiviikkona 17.4.2024 järjestetään Yrittäjän polku -Sinun polkusi?  -teemapäivä. Tapahtuma toteutetaan yhteistyössä Lohjan Yrittäjien ja Lohjan yhteislyseonlukion kanssa. <br><br>
+
+Päivän aikana kuullaan viisi inspiroivaa yrittäjätarinaa eri aloilta. Lisäksi kuullaan Luksian yrittäjyyskoulutuksista sekä Suomen Yrittäjien puheenvuoro omistajanvaihdoksesta. Tapahtuma järjestetään Luksian Harjun luentosalissa ja se välitetään virtuaalisesti Luksian muille kampuksille sekä Lohjan yhteislyseonlukion opiskelijoille.<br><br>
+
+
+Loistava tilaisuus kuulla yrittäjyydestä sekä erilaisista poluista yrittäjyyteen!  
+
+ <br><br>
+
+
+Esiintymisajat näet alla ja yritysten logoja klikkaamalla pääset yritysten verkkosivuille ja tutustumaan palveluihin.
+
+ 
+<br><br>
+
+Tervetuloa mukaan!      
+
+ 
+<br><br>
+
+ Tapahtumaa fasilitoi Luksian yritys- ja työelämäpalvelut. </p>
 			</div>
 		</div>
 		
+		
+		<div class="watch_button"> <button class="button_c">KATSO TÄSTÄ!</button></div>
 		
 		
 		
@@ -60,9 +82,8 @@
 				</div>
 				<h3 class="block_name">Taina Kunttu</h3>
 				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/Luksia_white.png') }}" width="170px"></div>
-				<h4 class="block_slogan">Yrittäjyysosaamisen kehittäminen? Miten Luksiassa voi kehittää yrittäjyysosaamista?</h4>
 				<div class="block_button">
-					<button class="button" id="button0">Watch here!</button>
+					<button class="button" id="button0">9:00 - 9:15</button>
 				</div>
 			</div>
 			
@@ -72,9 +93,9 @@
 				</div>
 				<h3 class="block_name">Jutta Österberg-Hurme</h3>
 				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/aplico_logo.png') }}" width="150px" style="border-radius: 10px;"></div>
-				<h4 class="block_slogan">"Löydä uusi tie terveyteen ja hyvinvointiin. Tavoitteemme on innostaa sinua aktiiviseen elämäntapaan ja saavuttamaan tavoitteesi."</h4>
+<!--				<h4 class="block_slogan">"Löydä uusi tie terveyteen ja hyvinvointiin. Tavoitteemme on innostaa sinua aktiiviseen elämäntapaan ja saavuttamaan tavoitteesi."</h4>-->
 				<div class="block_button">
-					<button class="button" id="button1">Watch here!</button>
+					<button class="button" id="button1">9:30 - 10:00</button>
 				</div>
 			</div>
 			
@@ -85,35 +106,48 @@
 				</div>
 				<h3 class="block_name">Hannu Saarelma</h3>
 				<div class="block_logo"><img alt="logo" src="https://rklsundholm.fi/wp-content/uploads/RKL_Sundholm_logo_tumma_akkuporakone-muok.png.webp" width="170px" style="margin-top: -15px;"></div>
-				<h4 class="block_slogan">"Rakennamme unelmia tiili tiileltä! Kotinne on meidän huolemme. Rakennusliike Sundholm Oy: n räjähdysmäinen nopeus ja luotettavuus. Vakuuta itsesi!"</h4>
+<!--				<h4 class="block_slogan">"Rakennamme unelmia tiili tiileltä! Kotinne on meidän huolemme. Rakennusliike Sundholm Oy: n räjähdysmäinen nopeus ja luotettavuus. Vakuuta itsesi!"</h4>-->
 				<div class="block_button">
-					<button class="button" id="button2">Watch here!</button>
+					<button class="button" id="button2">10:15 - 10:45</button>
 				</div>
 			</div>
 			
 			
-			<div class="full_block" style="background-color: #ffae55; justify-content: space-between;">
-				<div class="block_header_info" style="margin-top: 0px;">
+			<div class="full_block" style="background-color: #ffae55;">
+				<div class="block_header" style="border-top: 6px solid #ffae55;">
+					<h2 class="block_header_h2" onClick="redirectToPage('https://luksia.fi/')">Omistajanvaihdokseen liittyvä info</h2>
+				</div>
+				<h3 class="block_name">Anneli Komi</h3>
+				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/Luksia_white.png') }}" width="170px"></div>
+				<div class="block_button">
+					<button class="button">10:45 - 11:00</button>
+				</div>
+			</div>
+			
+<!--
+			<div class="full_block" style="background-color: #ffae55;">
+				<div class="block_header" style="border-top: 6px solid #ffae55;">
 					<h2 class="block_header_h2">Omistajanvaihdokseen liittyvä info</h2>
-					<h2 class="block_header_h2" style="margin-top:10px;">10:45 – 11:00</h2>
+					<h2 class="block_header_h2" style="margin-top:10px;">10:45 - 11:00</h2>
 				</div>
 				<div class="block_logo" style="margin: auto"><img alt="logo" src="{{ url_for('static', path='images/food.png') }}" width="100px"></div>
 				<div class="block_header_info" style="margin-bottom: 0px;">
 					<h2 class="block_header_h2">Lounastauko</h2>
-					<h2 class="block_header_h2" style="margin-top:10px;">11:00 – 12:00</h2>
+					<h2 class="block_header_h2" style="margin-top:10px;">11:00 - 12:00</h2>
 				</div>
 			</div>			
+-->
 			
 			
-			<div class="full_block" style="background-color: #e73d71;">
-				<div class="block_header" style="border-top: 6px solid #e73d71;">
+			<div class="full_block" style="background-color: #5dbef0;">
+				<div class="block_header" style="border-top: 6px solid #5dbef0;">
 					<h2 class="block_header_h2" onClick="redirectToPage('https://digiteam.fi/')">Digiteam Oy</h2>
 				</div>
 				<h3 class="block_name">Antti Kärki</h3>
 				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/digiteam_logo.svg') }}" width="200px" style="margin-block: 30px;"></div>
-				<h4 class="block_slogan">"Ohjelmistotuen ja kehityksen huippuosaaminen. Digiteam Oy - luotettava kumppaninne digitaalisessa maailmassa. Luodaan yhdessä jotain suurta!"</h4>
+<!--				<h4 class="block_slogan">"Ohjelmistotuen ja kehityksen huippuosaaminen. Digiteam Oy - luotettava kumppaninne digitaalisessa maailmassa. Luodaan yhdessä jotain suurta!"</h4>-->
 				<div class="block_button">
-					<button class="button" id="button3">Watch here!</button>
+					<button class="button" id="button3">12:00 - 12:30</button>
 				</div>
 			</div>
 			
@@ -124,9 +158,9 @@
 				</div>
 				<h3 class="block_name">Juhani Mattinen</h3>
 				<div class="block_logo"><img alt="logo" src="{{ url_for('static', path='images/autotalolohja_logo.png') }}" width="220px" style="margin-block: 20px; border-radius: 10px;"></div>
-				<h4 class="block_slogan">Uusi autonne odottaa teitä! Autotalo Lohja Oy tarjoaa laajan valikoiman autoja takuulla laadusta ja luotettavuudesta. Hinnat yllättävät miellyttävästi!</h4>
+<!--				<h4 class="block_slogan">Uusi autonne odottaa teitä! Autotalo Lohja Oy tarjoaa laajan valikoiman autoja takuulla laadusta ja luotettavuudesta. Hinnat yllättävät miellyttävästi!</h4>-->
 				<div class="block_button">
-					<button class="button" id="button4">Watch here!</button>
+					<button class="button" id="button4">12:45 - 13:15</button>
 				</div>
 			</div>
 			
@@ -151,9 +185,9 @@
 				</div>
 				<h3 class="block_name">Jaana Huusko-Röhrs</h3>
 				<div class="block_logo" onClick="redirectToPage('https://www.mehilainen.fi/toimipisteet/mehilainen-lohja/')"><img alt="logo" src="{{ url_for('static', path='images/mehilainen_logo.svg') }}" width="300px"></div>
-				<h4 class="block_slogan" style="margin-top: auto;">Mehiläinen Lohja on tuttu ja turvallinen lääkärikeskus aivan Lohjan keskustassa.</h4>
+<!--				<h4 class="block_slogan" style="margin-top: auto;">Mehiläinen Lohja on tuttu ja turvallinen lääkärikeskus aivan Lohjan keskustassa.</h4>-->
 				<div class="block_button">
-					<button class="button" id="button5">Watch here!</button>
+					<button class="button" id="button5">13:30 - 14:00</button>
 				</div>
 			</div>
 		</div>
@@ -161,6 +195,7 @@
 		
 		
 
+<!--
 		<div style="width: 90%; margin: 20px auto;">
 			<div >
 				<h1 style="color: #ffb612; font-size: 45px; margin: 0 0 10px;">Me autamme</h1>
@@ -169,6 +204,7 @@
 				<p style="margin: 0px; color: var(--color-primary); font-size: 20px">Haku- ja ohjauspalvelut<br>puh. 044 369 6675<br>hakupalvelut@luksia.fi</p>
 			</div>
 		</div>
+-->
     </div>
 
 
@@ -181,51 +217,47 @@
 		<img  src="{{ url_for('static', path='images/yell_animation.gif') }}" alt="background" width="100%">
 	</div>	
 	
-<!--	<div class="background_white" style="background-image: url({{ url_for('static', path='images/white_yll_animation.gif') }})">-->
-	
-	<div class="background_white" style="background-image: url({{ url_for('static', path='images/white_yll.jpg') }})">
-<!--		<img  src="yell_animation.gif" alt="luksia.fi" width="100%" >-->
-	</div>
-	
+<!--	<div class="background_white" style="background-image: url({{ url_for('static', path='images/white_yll.jpg') }})"></div>-->
+
 	
 <script>
 	
 	
-const buttons = [
-  document.getElementById('button0'),
-  document.getElementById('button1'),
-  document.getElementById('button2'),
-  document.getElementById('button3'),
-  document.getElementById('button4'),
-  document.getElementById('button5')
-];
-
-function setButtonText(button, text) {
-  button.classList.add('opac_0');
-  setTimeout(() => {
-  	button.textContent = text;
-    button.classList.remove('opac_0');
-  }, 1000);
-}
-
-function changeButtonText() {
-  const times = ['9.00 – 9.15', '9.30 – 10.00', '10:15 – 10:45', '12:00 – 12:30', '12:45 – 13:15', '13:30 – 14:00'];
-  
-  buttons.forEach((button, index) => {
-    const time = times[index % times.length]; 
-
-    setTimeout(() => {
-      setButtonText(button, time);
-    }, index * 3000);
-
-    setTimeout(() => {
-      setButtonText(button, 'Watch here!');
-    }, index * 3000 + 15000);
-  });
-}
-
-changeButtonText();
-setInterval(changeButtonText, 30000);
+//const buttons = [
+//  document.getElementById('button0'),
+//  document.getElementById('button1'),
+//  document.getElementById('button2'),
+//  document.getElementById('button3'),
+//  document.getElementById('button4'),
+//  document.getElementById('button5')
+//];
+//
+//function setButtonText(button, text) {
+//  button.classList.add('opac_0');
+//  setTimeout(() => {
+//  	button.textContent = text;
+//    button.classList.remove('opac_0');
+//  }, 1000);
+//}
+//
+//function changeButtonText() {
+//  const times = ['9.00 - 9.15', '9.30 - 10.00', '10:15 - 10:45', '12:00 - 12:30', '12:45 - 13:15', '13:30 - 14:00'];
+//  
+//  buttons.forEach((button, index) => {
+//    const time = times[index % times.length]; 
+//
+//    setTimeout(() => {
+//      setButtonText(button, time);
+//    }, index * 3000);
+//
+//    setTimeout(() => {
+//      setButtonText(button, 'Watch here!');
+//    }, index * 3000 + 15000);
+//  });
+//}
+//
+//changeButtonText();
+//setInterval(changeButtonText, 30000);
 	
 	
 	
@@ -257,8 +289,8 @@ function toggleTheme() {
 	  document.getElementById('slider').checked = true;
 	}
 })();	
-setTheme('theme-dark');
-document.getElementById('slider').checked = false;
+setTheme('theme-light');
+document.getElementById('slider').checked = true;
 </script>
 </body>
 </html>
