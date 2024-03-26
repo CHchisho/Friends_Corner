@@ -30,7 +30,7 @@ If the Login page does not respond: refresh the page and try again. Or go to htt
 I'm actively looking for opportunities to start my career as a developer. 
 I am open to internships, Junior Developer positions, or other job opportunities that will allow me to apply and develop my programming skills.
 
-My resume and additional information about my projects are available on my personal website - https://friends-corner-5chi.onrender.com/ and LinkedIn profile - https://www.linkedin.com/in/ilia-chebanik-ch/
+My resume and additional information about my projects are available on my personal website - https://chebanik.alwaysdata.net/ and LinkedIn profile - https://www.linkedin.com/in/ilia-chebanik/
 
 I would be happy to discuss the available options in person or by email at iliebanik@gmail.com. 
 If you see an opportunity that's right for me, please contact me! I would be grateful for any feedback and recommendations.
