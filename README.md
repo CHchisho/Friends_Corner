@@ -1,8 +1,5 @@
-# Portfolio - Ilia Chebanik
+# Friends Corner
 
-**Hi there 👋 I'm Ilia Chebanik, an 18-year old software development student from Finland. Currently I want to work as a Full-stack or Backend developer.**
-
-I've taken courses in Python, Flask and FastAPI development. 
 I enjoyed working with FastAPI the most, so I used it to build a small "Friends Corner" app to showcase my skills. 
 It features user registration and authentication using cookies and JWTs. Users can then search for matching friend candidates.
 If two users mutually "like" each other, they unlock a chat page powered by WebSockets. All data is stored in a PostgreSQL database. 
@@ -27,10 +24,4 @@ If the Login page does not respond: refresh the page and try again. Or go to htt
 
 
 
-I'm actively looking for opportunities to start my career as a developer. 
-I am open to internships, Junior Developer positions, or other job opportunities that will allow me to apply and develop my programming skills.
-
-My resume and additional information about my projects are available on my personal website - https://chebanik.alwaysdata.net/ and LinkedIn profile - https://www.linkedin.com/in/ilia-chebanik/
-
-I would be happy to discuss the available options in person or by email at iliebanik@gmail.com. 
-If you see an opportunity that's right for me, please contact me! I would be grateful for any feedback and recommendations.
+My personal website - https://chebanik.alwaysdata.net/ and LinkedIn profile - https://www.linkedin.com/in/ilia-chebanik/
