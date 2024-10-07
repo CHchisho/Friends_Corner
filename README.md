@@ -16,12 +16,4 @@ I containerized the app with Docker and deployed it to Render so you can try it 
 - **Deploy to a cloud provider**
 
 
-P.S. 
-To log in via a test account, use these details: 
-Mail: **amelia_test@gmail.com** | Password: **test_user_pass**
-Test account data is reset every 6 hours.
-If the Login page does not respond: refresh the page and try again. Or go to https://friends-corner-5chi.onrender.com/pages/me
-
-
-
 My personal website - https://chebanik.alwaysdata.net/ and LinkedIn profile - https://www.linkedin.com/in/ilia-chebanik/
